@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carpenter Rentals - Lebanon, MO</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- ✅ Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
+  <!-- Font (optional) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -18,6 +18,7 @@
 </head>
 <body class="bg-gradient-to-r from-slate-100 to-white text-gray-900 min-h-screen">
 
+  <!-- Header -->
   <header class="bg-blue-900 text-white py-8 shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
       <h1 class="text-4xl font-extrabold">Carpenter Rentals</h1>
@@ -25,114 +26,81 @@
     </div>
   </header>
 
+  <!-- Main -->
   <main class="max-w-6xl mx-auto px-4 py-12">
+
+    <!-- Intro -->
     <section class="text-center mb-16">
       <h2 class="text-3xl font-semibold mb-6">Find your next home or getaway</h2>
       <p class="text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed">
-        Whether you're looking for a short-term Airbnb-style rental or a long-term lease, Carpenter Rentals has options to fit your lifestyle and budget. Reach out to learn more about current availability.
+        Whether you're looking for a short-term Airbnb-style rental or a long-term lease, Carpenter Rentals has options to fit your lifestyle and budget.
       </p>
     </section>
 
+    <!-- Rental Boxes -->
     <section class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+
       <!-- Airbnb Rental -->
-      <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-300 hover:shadow-pink-400 transition-shadow duration-300">
-        <a href="https://www.airbnb.com/rooms/1382696824537083625?check_in=2025-07-06&check_out=2025-07-07&search_mode=regular_search&adults=1&source_impression_id=p3_1751769705_P3yxya2PoCk2-lD9&previous_page_section_name=1000&federated_search_id=8d6ae904-bf5f-49dc-a999-73280b3c8841&guests=1" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://a0.muscache.com/im/pictures/78f6c224-6003-40a7-b85f-5731d3fba004.jpg?im_w=720"
-            alt="Airbnb Rental - Peaceful RV Stay on 7 Acres"
-            class="w-full h-64 object-cover"
-            loading="lazy"
-          />
+      <div class="bg-white rounded-3xl shadow-lg hover:shadow-[0_0_20px_#ec4899] transition-shadow duration-300 p-8 border border-gray-300">
+        <h3 class="text-2xl font-bold text-pink-700 mb-3">Peaceful RV Stay on 7 Acres</h3>
+        <p class="text-gray-700 mb-5">
+          Experience the great outdoors in comfort with our cozy RV retreat, conveniently located just minutes from Bennett Spring State Park. Whether you’re an avid angler eager to fish the park’s renowned trout streams or a nature enthusiast ready to explore scenic hiking trails, our RV offers the perfect home base for your adventures.
+        </p>
+        <a href="https://www.airbnb.com/rooms/1382696824537083625?check_in=2025-07-06&check_out=2025-07-07&guests=1&adults=1&s=39&unique_share_id=e4ce9cd9-ab4c-46ea-94ef-fb1dae198156"
+           target="_blank"
+           class="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition-colors duration-200">
+          View on Airbnb
         </a>
-        <div class="p-8">
-          <h3 class="text-2xl font-bold text-pink-700 mb-3">Peaceful RV Stay on 7 Acres</h3>
-          <p class="text-gray-700 mb-5">
-            A private, peaceful RV experience on a spacious 7-acre property. Enjoy nature and a relaxing environment just minutes from Lebanon. Book directly on Airbnb.
-          </p>
-          <a href="https://www.airbnb.com/rooms/1382696824537083625?check_in=2025-07-06&check_out=2025-07-07&search_mode=regular_search&adults=1&source_impression_id=p3_1751769705_P3yxya2PoCk2-lD9&previous_page_section_name=1000&federated_search_id=8d6ae904-bf5f-49dc-a999-73280b3c8841&guests=1"
-            target="_blank" rel="noopener noreferrer"
-            class="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition-colors duration-200"
-            >View on Airbnb</a>
-        </div>
       </div>
 
       <!-- Coming Soon Rental -->
-      <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-300 relative group hover:shadow-green-400 transition-shadow duration-300">
-        <a href="https://www.zillow.com/homedetails/17007-Dogwood-Dr-Lebanon-MO-65536/251387972_zpid/" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://photos.zillowstatic.com/fp/2707a3e9d682ed36b822ef29b68f1a59-p_e.jpg"
-            alt="Coming Soon - 17007 Dogwood Dr, Lebanon, MO"
-            class="w-full h-64 object-cover"
-            loading="lazy"
-          />
-        </a>
-        <div class="p-8">
-          <h3 class="text-2xl font-bold text-green-800 mb-3">Coming Soon: Family Home</h3>
-          <p class="text-gray-700 mb-5">
-            3-bedroom, 2-bath house located at 17007 Dogwood Dr, Lebanon, MO 65536.<br />
-            Spacious fenced yard and garage. Available soon for rent.
-          </p>
-          <div class="text-xl font-semibold text-green-700 mb-6">$1,200/month</div>
-          <button
-            disabled
-            class="cursor-not-allowed bg-green-300 text-green-700 font-semibold px-6 py-3 rounded-lg opacity-70"
-          >
-            Coming Soon
-          </button>
-        </div>
-        <div
-          class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-        >
+      <div class="bg-white rounded-3xl shadow-lg hover:shadow-[0_0_20px_#22c55e] transition-shadow duration-300 p-8 border border-gray-300 relative">
+        <h3 class="text-2xl font-bold text-green-800 mb-3">Coming Soon: Family Home</h3>
+        <p class="text-gray-700 mb-5">
+          3-bedroom, 2-bath house located at 17007 Dogwood Dr, Lebanon, MO 65536.<br />
+          Spacious fenced yard and garage. Available soon for rent.
+        </p>
+        <div class="text-xl font-semibold text-green-700 mb-6">$1,200/month</div>
+        <button disabled class="cursor-not-allowed bg-green-300 text-green-700 font-semibold px-6 py-3 rounded-lg opacity-70">
+          Coming Soon
+        </button>
+        <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           Coming Soon
         </div>
       </div>
+
     </section>
 
     <!-- Contact Form -->
     <section id="contact" class="mt-20 bg-blue-50 p-12 rounded-xl shadow-md max-w-4xl mx-auto">
       <h2 class="text-2xl font-semibold text-blue-900 mb-8 text-center">Contact Us</h2>
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-8" onsubmit="alert('Thank you for your inquiry! We will get back to you soon.'); return false;">
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-8" onsubmit="alert('Thank you! We’ll get back to you soon.'); return false;">
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-          <input
-            type="text"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-            placeholder="John Doe"
-            required
-          />
+          <input type="text" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-400" placeholder="John Doe" required />
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input
-            type="email"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-            placeholder="you@example.com"
-            required
-          />
+          <input type="email" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-400" placeholder="you@example.com" required />
         </div>
         <div class="md:col-span-2">
           <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-          <textarea
-            rows="5"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-            placeholder="I'm interested in..."
-            required
-          ></textarea>
+          <textarea rows="5" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-blue-400" placeholder="I'm interested in..." required></textarea>
         </div>
         <div class="md:col-span-2 text-center">
-          <button
-            type="submit"
-            class="bg-blue-900 text-white px-8 py-3 rounded-lg hover:bg-blue-800 transition-colors duration-200 font-semibold"
-          >
+          <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-lg hover:bg-blue-800 transition duration-200 font-semibold">
             Send Inquiry
           </button>
         </div>
       </form>
     </section>
+
   </main>
 
+  <!-- Footer -->
   <footer class="text-center text-sm text-gray-500 py-10">
     &copy; 2025 Carpenter Rentals. All rights reserved.
   </footer>
+
 </body>
 </html>
