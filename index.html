@@ -3,12 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tailwind Test</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Carpenter Rentals - Lebanon, MO</title>
+  <link href="./styles/output.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-100 text-center p-10">
-  <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg text-xl">
-    ✅ Tailwind is working!
-  </div>
-</body>
-</html>
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+
+  <header class="bg-blue-900 text-white py-8 shadow-lg text-center">
+    <h1 class="text-4xl font-extrabold">Carpenter Rentals</h1>
+    <p class="text-lg text-blue-200">Serving Lebanon, MO and surrounding areas</p>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <section class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Find your next home or getaway</h2>
+      <p class="text-gray-700 max-w-3xl mx-auto">
+        Whether you're looking for a short-term Airbnb-style rental or a long-term lease, Carpenter Rentals has options to fit your lifestyle and budget.
+      </p>
+    </section>
+
+    <section class="grid md:grid-cols-2 gap-10">
+      <!-- Airbnb Rental -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 border hover:shadow-pink-400 transition-shadow duration-300">
+        <h3 class="text-xl font-bold text-pink-600 mb-2">Peaceful RV Stay on 7 Acres</h3>
+        <p class="text-gray-700 mb-4">
+          Experience the great outdoors in comfort with our cozy RV retreat, just minutes from Bennett Spring State Park.
+        </p>
+        <a href="https://www.airbnb.com/rooms/1382696824537083625?check_in=2025-07-06&check_out=2025-07-07&guests=1&adults=1&s=39&unique_share_id=e4ce9cd9-ab4c-46ea-94ef-fb1dae198156"
+           target="_blank"
+           class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded font-semibold transition-colors duration-200">
+          View on Airbnb
+        </a>
+      </div>
+
+      <!-- Coming Soon Rental -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 border hover:shadow-green-400 transition-shadow duration-300 relative">
+        <h3 class="text-xl font-bold text-green-700 mb-2">Coming Soon: Family Home</h3>
+        <p class="text-gray-700 mb-4">
+          3-bedroom, 2-bath house at 17007 Dogwood Dr. Available soon for rent.
