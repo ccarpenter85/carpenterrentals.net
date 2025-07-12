@@ -4,39 +4,158 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carpenter Rentals - Lebanon, MO</title>
-  <link href="./styles/output.css" rel="stylesheet" />
-</head>
-<body class="bg-gray-100 text-gray-900 min-h-screen">
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f4f6;
+      color: #222;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+    a:hover {
+      opacity: 0.9;
+    }
 
-  <header class="bg-blue-900 text-white py-8 shadow-lg text-center">
-    <h1 class="text-4xl font-extrabold">Carpenter Rentals</h1>
-    <p class="text-lg text-blue-200">Serving Lebanon, MO and surrounding areas</p>
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #1e3a8a;
+    }
+
+    p.intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: #444;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #db2777;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background: #be185d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #ddd;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Carpenter Rentals</h1>
+    <p>Serving Lebanon, MO and surrounding areas</p>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-12">
-    <section class="text-center mb-12">
-      <h2 class="text-3xl font-bold mb-4">Find your next home or getaway</h2>
-      <p class="text-gray-700 max-w-3xl mx-auto">
+  <main class="container">
+    <section>
+      <h2>Find your next home or getaway</h2>
+      <p class="intro">
         Whether you're looking for a short-term Airbnb-style rental or a long-term lease, Carpenter Rentals has options to fit your lifestyle and budget.
       </p>
     </section>
 
-    <section class="grid md:grid-cols-2 gap-10">
+    <section class="grid">
       <!-- Airbnb Rental -->
-      <div class="bg-white rounded-2xl shadow-lg p-6 border hover:shadow-pink-400 transition-shadow duration-300">
-        <h3 class="text-xl font-bold text-pink-600 mb-2">Peaceful RV Stay on 7 Acres</h3>
-        <p class="text-gray-700 mb-4">
+      <div class="card">
+        <h3 style="color: #db2777;">Peaceful RV Stay on 7 Acres</h3>
+        <p>
           Experience the great outdoors in comfort with our cozy RV retreat, just minutes from Bennett Spring State Park.
         </p>
         <a href="https://www.airbnb.com/rooms/1382696824537083625?check_in=2025-07-06&check_out=2025-07-07&guests=1&adults=1&s=39&unique_share_id=e4ce9cd9-ab4c-46ea-94ef-fb1dae198156"
-           target="_blank"
-           class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded font-semibold transition-colors duration-200">
-          View on Airbnb
-        </a>
+           target="_blank" class="btn">View on Airbnb</a>
       </div>
 
       <!-- Coming Soon Rental -->
-      <div class="bg-white rounded-2xl shadow-lg p-6 border hover:shadow-green-400 transition-shadow duration-300 relative">
-        <h3 class="text-xl font-bold text-green-700 mb-2">Coming Soon: Family Home</h3>
-        <p class="text-gray-700 mb-4">
+      <div class="card">
+        <h3 style="color: #16a34a;">Coming Soon: Family Home</h3>
+        <p>
           3-bedroom, 2-bath house at 17007 Dogwood Dr. Available soon for rent.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Carpenter Rentals. All rights reserved.
+  </footer>
+
+</body>
+</html>
