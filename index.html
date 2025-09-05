@@ -1,219 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carpenter IT</title>
+  <meta name="description" content="Carpenter IT — PC builds, repairs, and small‑business IT with a clean, modern look." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0b0b0b;
-      color: #f0f0f0;
+    :root{
+      --bg:#0b0f12;          /* deep charcoal */
+      --panel:#10161b;       /* card background */
+      --muted:#7a8a99;       /* secondary text */
+      --text:#e7f2f2;        /* primary text */
+      --accent:#00e08a;      /* neon green accent reminiscent of DeepCool */
+      --accent-2:#00b86c;    /* darker accent for hovers */
+      --ring: rgba(0,224,138,0.35); /* glow */
+      --shadow: 0 10px 25px rgba(0,0,0,.3);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1200px;
     }
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(15, 15, 15, 0.95);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
+
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(11,15,18,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{color:var(--accent)}
+    .cta{padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;font-weight:700;box-shadow:0 0 0 4px var(--ring), var(--shadow)}
+    .cta:hover{transform:translateY(-1px);filter:brightness(1.05)}
+
+    /* Mobile nav */
+    .menu-btn{display:none;border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:10px}
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .menu-btn{display:inline-flex;gap:8px;align-items:center}
     }
-    header .brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #38bdf8;
-      font-size: 1.5rem;
-      font-weight: bold;
+
+    /* Drawer */
+    .drawer{position:fixed;inset:0 0 0 auto;width:min(88vw,380px);background:#0e1419;transform:translateX(102%);transition:transform .25s ease;box-shadow:-30px 0 60px rgba(0,0,0,.45)}
+    .drawer.open{transform:translateX(0)}
+    .drawer .inner{padding:22px}
+    .drawer a{display:block;padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+
+    /* Hero */
+    .hero{position:relative;border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:72px 20px}
+    .hero h1{font-size:clamp(28px,5vw,56px);line-height:1.05;margin:0 0 14px;font-weight:800}
+    .hero p{color:var(--muted);font-size:clamp(14px,2.2vw,18px)}
+    .hero .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:transparent}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;border:none;font-weight:800}
+    .btn:hover{border-color:rgba(255,255,255,.22)}
+
+    .glow{position:absolute;inset:auto -20% -35% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,var(--ring),transparent 60%);filter:blur(40px);opacity:.6;pointer-events:none}
+
+    .hero-card{background:linear-gradient(180deg,#0f1419,#0b0f12);border:1px solid rgba(255,255,255,.06);padding:22px;border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+    .spec{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+    .spec:last-child{border-bottom:none}
+
+    @media (max-width: 900px){
+      .hero .container{grid-template-columns:1fr;padding:48px 20px}
     }
-    header .brand img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #f0f0f0;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #38bdf8;
-    }
-    .hero {
-      height: 90vh;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('tech-background.jpg') center/cover;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      padding: 2rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #38bdf8;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-    }
-    .hero a {
-      background: #38bdf8;
-      color: #0b0b0b;
-      padding: 0.8rem 1.5rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .hero a:hover {
-      background: #0ea5e9;
-    }
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-    section h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: #38bdf8;
-      margin-bottom: 2rem;
-    }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .service {
-      background: #161616;
-      padding: 2rem;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-      transition: transform 0.3s;
-    }
-    .service:hover {
-      transform: translateY(-5px);
-    }
-    .contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-    .contact-info, .contact-form {
-      flex: 1;
-      min-width: 300px;
-      background: #161616;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-    }
-    .contact-form form input, .contact-form form textarea {
-      width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 10px;
-    }
-    .contact-form form button {
-      background: #38bdf8;
-      color: #0b0b0b;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .contact-form form button:hover {
-      background: #0ea5e9;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #0a0a0a;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
+
+    /* Tiles */
+    .tiles{padding:36px 0}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 4;background:var(--panel);border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,.06);transition:transform .15s ease, box-shadow .15s ease}
+    .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.35)}
+    .card h3{margin:10px 0 4px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,224,138,.12);border:1px solid rgba(0,224,138,.35);color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.4px}
+    @media (max-width: 1024px){.card{grid-column:span 6}}
+    @media (max-width: 640px){.card{grid-column:span 12}}
+
+    /* Showcase (products/services) */
+    .showcase{padding:14px 0 64px}
+    .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .prod{background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+    .prod img{aspect-ratio:16/9;object-fit:cover}
+    .prod .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+    .prod .meta h4{margin:0}
+    .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted)}
+    @media (max-width: 900px){.show-grid{grid-template-columns:1fr}}
+
+    /* Support strip */
+    .support{background:linear-gradient(90deg,rgba(0,224,138,.08),transparent);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+    .support .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:16px 0}
+    .support .bar span{color:var(--muted)}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 0;color:var(--muted)}
+    footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px}
+    footer h5{margin:0 0 10px;color:var(--text)}
+    footer a{display:block;padding:6px 0;color:var(--muted)}
+    footer a:hover{color:var(--accent)}
+    @media (max-width: 900px){footer .cols{grid-template-columns:1fr 1fr}}
+    @media (max-width: 540px){footer .cols{grid-template-columns:1fr}}
+
+    /* Utility */
+    .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
   <header>
-    <a href="#" class="brand">
-      <img src="LOGO.PNG" alt="Carpenter IT Logo">
-      Carpenter IT
-    </a>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="container nav">
+      <a class="brand" href="#"><span class="dot" aria-hidden="true"></span> Carpenter IT</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#builds">PC Builds</a>
+        <a href="#support">Support</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="cta" href="#contact">Get a Quote</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="drawer" id="menuBtn">Menu ▾</button>
+    </div>
   </header>
 
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="inner">
+      <a href="#services" onclick="closeDrawer()">Services</a>
+      <a href="#builds" onclick="closeDrawer()">PC Builds</a>
+      <a href="#support" onclick="closeDrawer()">Support</a>
+      <a href="#about" onclick="closeDrawer()">About</a>
+      <a href="#contact" class="cta" style="display:inline-block;margin-top:14px" onclick="closeDrawer()">Get a Quote</a>
+    </div>
+  </aside>
+
   <section class="hero">
-    <h1>Welcome to Carpenter IT</h1>
-    <p>Your trusted partner for IT solutions, computer repairs, and network support. We provide reliable and affordable services to keep your technology running smoothly.</p>
-    <a href="#contact">Get in Touch</a>
-  </section>
-
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Computer Repair</h3>
-        <p>Expert diagnostics and repair for desktops, laptops, and hardware issues.</p>
+    <div class="glow" aria-hidden="true"></div>
+    <div class="container">
+      <div>
+        <h1>Quiet Power. Clean Builds. <span style="color:var(--accent)">Zero Fuss.</span></h1>
+        <p>We build and service PCs that stay cool and whisper‑quiet, with pro‑grade cable management and smart airflow. Small business support and gaming rigs—done right.</p>
+        <div class="actions">
+          <a class="btn primary" href="#builds">See Featured Builds</a>
+          <a class="btn" href="#services">All Services</a>
+        </div>
+        <div class="tiles container" style="padding:18px 0 0">
+          <div class="grid">
+            <div class="card"><span class="badge">NEW</span><h3>Airflow Optimization</h3><p style="color:var(--muted)">Thermal mapping, fan curves, and dust‑smart layouts.</p></div>
+            <div class="card"><span class="badge">POPULAR</span><h3>Custom PC Builds</h3><p style="color:var(--muted)">Gaming, creator, and office builds with honest parts.</p></div>
+            <div class="card"><span class="badge">FAST</span><h3>Same‑Day Repairs</h3><p style="color:var(--muted)">Diagnostics, OS refresh, and data rescue.</p></div>
+          </div>
+        </div>
       </div>
-      <div class="service">
-        <h3>Network Setup</h3>
-        <p>Home and business network installation, troubleshooting, and optimization.</p>
-      </div>
-      <div class="service">
-        <h3>Virus Removal</h3>
-        <p>Comprehensive malware and virus removal to protect your systems.</p>
-      </div>
-      <div class="service">
-        <h3>Data Backup</h3>
-        <p>Reliable backup solutions to keep your files safe and recoverable.</p>
-      </div>
-      <div class="service">
-        <h3>Custom PC Builds</h3>
-        <p>High-performance custom desktops built for gaming, work, or home use.</p>
-      </div>
-      <div class="service">
-        <h3>IT Consulting</h3>
-        <p>Personalized guidance and support for your technology and business needs.</p>
+      <div class="hero-card" role="region" aria-label="Spec highlight">
+        <h3 style="margin:0 0 10px">Signature Build Spec</h3>
+        <div class="spec"><span>CPU</span><strong>Ryzen 7 5800X3D</strong></div>
+        <div class="spec"><span>Cooling</span><strong>240mm AIO / tuned curves</strong></div>
+        <div class="spec"><span>GPU</span><strong>GeForce RTX 4070</strong></div>
+        <div class="spec"><span>Noise</span><strong>< 28 dBA idle</strong></div>
+        <div class="spec"><span>Warranty</span><strong>2‑Year build support</strong></div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact">
-      <div class="contact-info">
-        <h3>Get in Touch</h3>
-        <p><strong>Phone:</strong> (555) 123-4567</p>
-        <p><strong>Email:</strong> carpenterit@example.com</p>
-        <p><strong>Address:</strong> Springfield, MO</p>
-      </div>
-      <div class="contact-form">
-        <form action="https://formsubmit.co/your@email.com" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
+  <section id="builds" class="showcase container">
+    <h2 style="margin:18px 0 10px;font-size:28px">Featured Builds</h2>
+    <p style="color:var(--muted);margin:0 0 18px">A few recent rigs. Ask about silent profiles and dust‑free routing.</p>
+    <div class="show-grid">
+      <article class="prod">
+        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop" alt="Clean black PC build with green accent lighting" />
+        <div class="meta"><h4>Stealth mATX</h4><span class="pill">Air cooled</span></div>
+      </article>
+      <article class="prod">
+        <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1200&auto=format&fit=crop" alt="RGB watercooled PC build" />
+        <div class="meta"><h4>Creator 240</h4><span class="pill">240mm AIO</span></div>
+      </article>
+      <article class="prod">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop" alt="Compact ITX build" />
+        <div class="meta"><h4>Compact ITX</h4><span class="pill">Small form factor</span></div>
+      </article>
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Carpenter IT. All rights reserved.</p>
+  <section id="services" class="container" style="padding:8px 0 64px">
+    <h2 style="margin:18px 0 10px;font-size:28px">Services</h2>
+    <div class="grid">
+      <div class="card" style="grid-column:span 6"><h3>Business IT</h3><p style="color:var(--muted)">Network setup, Pi‑hole DNS, secure backups, and Windows Server maintenance.</p><a class="btn" href="#contact">Learn more →</a></div>
+      <div class="card" style="grid-column:span 6"><h3>PC Repair</h3><p style="color:var(--muted)">Thermal paste, PSU swaps, storage upgrades, and data recovery.</p><a class="btn" href="#contact">Book a diagnostic →</a></div>
+    </div>
+  </section>
+
+  <section id="support" class="support">
+    <div class="container bar">
+      <span>Need help now?</span>
+      <a class="btn primary" href="#contact">Start Support Chat</a>
+    </div>
+  </section>
+
+  <footer class="container">
+    <div class="cols">
+      <div>
+        <h5>Carpenter IT</h5>
+        <p>Quiet, cool, and clean PCs. Small‑business IT without the headache.</p>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#builds">Builds</a>
+        <a href="#services">Services</a>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <a href="#contact">Contact</a>
+        <a href="#">Warranty</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <p style="margin-top:24px">© <span id="year"></span> Carpenter IT. All rights reserved.</p>
   </footer>
+
+  <script>
+    const drawer = document.getElementById('drawer');
+    const menuBtn = document.getElementById('menuBtn');
+    function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');menuBtn.setAttribute('aria-expanded','false')}
+    menuBtn.addEventListener('click',()=>{
+      const open = drawer.classList.toggle('open');
+      drawer.setAttribute('aria-hidden', String(!open));
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
