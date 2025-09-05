@@ -10,13 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0f12;          
-      --panel:#10161b;       
-      --muted:#7a8a99;       
-      --text:#e7f2f2;        
-      --accent:#00e08a;      
-      --accent-2:#00b86c;    
-      --ring: rgba(0,224,138,0.35); 
+      --bg:#0b0f12;
+      --panel:#10161b;
+      --muted:#9aa;
+      --text:#e7f2f2;
+      --accent:#00e08a;
+      --accent-2:#00b86c;
+      --ring: rgba(0,224,138,0.35);
       --shadow: 0 10px 25px rgba(0,0,0,.3);
       --radius: 16px;
       --radius-lg: 22px;
@@ -24,7 +24,7 @@
     }
 
     *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth;}
     img{max-width:100%;display:block;}
     a{color:inherit;text-decoration:none;}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
@@ -35,10 +35,10 @@
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;}
     .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);}
     .nav-links{display:flex;gap:22px;align-items:center;}
-    .nav-links a{opacity:.9;}
+    .nav-links a{opacity:.9;transition:all .2s;}
     .nav-links a:hover{color:var(--accent);}
     .cta{padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;font-weight:700;box-shadow:0 0 0 4px var(--ring), var(--shadow);transition:all .25s ease;}
-    .cta:hover{transform:translateY(-1px);filter:brightness(1.1);}
+    .cta:hover{transform:translateY(-2px);filter:brightness(1.1);}
 
     /* Mobile nav */
     .menu-btn{display:none;border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:10px;}
@@ -51,14 +51,13 @@
     .drawer{position:fixed;inset:0 0 0 auto;width:min(88vw,380px);background:#0e1419;transform:translateX(102%);transition:transform .25s ease;box-shadow:-30px 0 60px rgba(0,0,0,.45);}
     .drawer.open{transform:translateX(0);}
     .drawer .inner{padding:22px;}
-    .drawer a{display:block;padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.06);}
+    .drawer a{display:block;padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .2s;}
+    .drawer a:hover{color:var(--accent);}
 
     /* Hero */
-    .hero{position:relative;overflow:hidden;
-      background: radial-gradient(circle at top left, rgba(0,224,138,0.05), transparent 60%),
-                  linear-gradient(to bottom, #0d1318, #0b0f12);}
+    .hero{position:relative;overflow:hidden;background: radial-gradient(circle at top left, rgba(0,224,138,0.05), transparent 60%), linear-gradient(to bottom, #0d1318, #0b0f12);}
     .hero .container{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:100px 20px;}
-    .hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin:0 0 18px;font-weight:800;}
+    .hero h1{font-size:clamp(40px,6vw,64px);line-height:1.1;margin:0 0 18px;font-weight:800;letter-spacing:-0.5px;}
     .hero p{color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.6;}
     .hero .actions{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:transparent;transition:all .25s ease;}
@@ -68,24 +67,26 @@
 
     /* Tiles / Services */
     .tiles{padding:50px 0 20px;}
-    .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
     @media (max-width: 1024px){.tiles .grid{grid-template-columns:repeat(2,1fr);}}
     @media (max-width: 640px){.tiles .grid{grid-template-columns:1fr;}}
-
-    .card{background:var(--panel);border-radius:var(--radius);padding:22px;border:1px solid rgba(255,255,255,.06);transition:transform .25s ease, box-shadow .25s ease;opacity:0;transform:translateY(20px);}
+    .card{background:var(--panel);border-radius:var(--radius);padding:22px;border:1px solid rgba(255,255,255,.06);transition:transform .25s ease, box-shadow .25s ease, opacity .6s, transform .6s;opacity:0;transform:translateY(20px);}
     .card.visible{opacity:1;transform:translateY(0);}
     .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 16px 32px rgba(0,0,0,.45);}
     .card h3{margin:10px 0 6px;}
+    .card .icon{font-size:28px;color:var(--accent);margin-bottom:12px;display:inline-block;}
 
     /* Featured Builds */
     .showcase{padding:70px 0;}
-    .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-    .prod{background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(20px);transition:.6s;}
+    .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+    .prod{position:relative;background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(20px);transition:all .6s;}
     .prod.visible{opacity:1;transform:translateY(0);}
     .prod img{aspect-ratio:16/9;object-fit:cover;}
     .prod .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
     .prod .meta h4{margin:0;}
-    .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted);}
+    .prod .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted);}
+    .prod::after{content:"View Specs";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:var(--accent);font-weight:600;opacity:0;transition:opacity .3s ease;}
+    .prod:hover::after{opacity:1;}
     @media (max-width: 900px){.show-grid{grid-template-columns:1fr;}}
 
     /* Support strip */
@@ -101,7 +102,7 @@
     .contact-form button:hover{background:var(--accent-2);transform:translateY(-2px);}
 
     /* Footer */
-    footer{background:#090c0f;padding:60px 20px;color:var(--muted);margin-top:40px;}
+    footer{background:#090c0f;padding:60px 20px;color:var(--muted);margin-top:40px;border-top:2px solid rgba(0,224,138,0.15);}
     footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
     footer h5{margin:0 0 12px;color:var(--text);font-size:16px;font-weight:600;}
     footer a{display:block;padding:6px 0;color:var(--muted);}
@@ -149,11 +150,11 @@
         </div>
         <div class="tiles container">
           <div class="grid">
-            <div class="card"><h3>Software Testing</h3><p style="color:var(--muted)">Functional, regression, and automated testing to guarantee your software meets all requirements.</p></div>
-            <div class="card"><h3>Network Testing</h3><p style="color:var(--muted)">Evaluate network performance, security, and resilience under real-world conditions.</p></div>
-            <div class="card"><h3>Performance Testing</h3><p style="color:var(--muted)">Stress, load, and scalability testing to ensure your applications can handle peak demand.</p></div>
-            <div class="card"><h3>PC Building</h3><p style="color:var(--muted)">Custom-built PCs designed for power, performance, and your exact needs — from high-speed gaming rigs to reliable workstations.</p></div>
-            <div class="card"><h3>Example Jobs & Rates</h3><p style="color:var(--muted)">
+            <div class="card"><span class="icon">💻</span><h3>Software Testing</h3><p style="color:var(--muted)">Functional, regression, and automated testing to guarantee your software meets all requirements.</p></div>
+            <div class="card"><span class="icon">🌐</span><h3>Network Testing</h3><p style="color:var(--muted)">Evaluate network performance, security, and resilience under real-world conditions.</p></div>
+            <div class="card"><span class="icon">⚡</span><h3>Performance Testing</h3><p style="color:var(--muted)">Stress, load, and scalability testing to ensure your applications can handle peak demand.</p></div>
+            <div class="card"><span class="icon">🛠️</span><h3>PC Building</h3><p style="color:var(--muted)">Custom-built PCs designed for power, performance, and your exact needs — from high-speed gaming rigs to reliable workstations.</p></div>
+            <div class="card"><span class="icon">📊</span><h3>Example Jobs & Rates</h3><p style="color:var(--muted)">
               Basic PC cleanup / tune-up: $50/hr<br>
               Virus removal: $60/hr<br>
               Home Wi-Fi troubleshooting: $55/hr<br>
@@ -161,7 +162,7 @@
               Network setup / router config: $60/hr<br>
               On-site tech support: $65
             </p></div>
-            <div class="card"><h3>Optional Add-ons</h3><p style="color:var(--muted)">
+            <div class="card"><span class="icon">➕</span><h3>Optional Add-ons</h3><p style="color:var(--muted)">
               • Monthly service plans (remote support + 1 onsite visit per quarter)<br>
               • Hardware recommendations and install service packages
             </p></div>
@@ -248,7 +249,11 @@
   <script>
     const drawer = document.getElementById('drawer');
     const menuBtn = document.getElementById('menuBtn');
-    function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');menuBtn.setAttribute('aria-expanded','false')}
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+      menuBtn.setAttribute('aria-expanded','false');
+    }
     menuBtn.addEventListener('click',()=>{
       drawer.classList.toggle('open');
       drawer.setAttribute('aria-hidden', drawer.classList.contains('open') ? 'false':'true');
@@ -256,7 +261,7 @@
     });
 
     // Scroll reveal
-    const observer=new IntersectionObserver(entries=>{
+    const observer = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
       })
@@ -264,7 +269,16 @@
     document.querySelectorAll('.card,.prod').forEach(el=>observer.observe(el));
 
     // Dynamic year
-    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener("click",function(e){
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"});
+        closeDrawer();
+      });
+    });
   </script>
 </body>
 </html>
