@@ -10,18 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0f12;
-      --panel:#10161b;
-      --muted:#7a8a99;
-      --text:#e7f2f2;
-      --accent:#00e08a;
-      --accent-2:#00b86c;
-      --ring: rgba(0,224,138,0.35);
+      --bg:#0b0f12;          /* deep charcoal */
+      --panel:#10161b;       /* card background */
+      --muted:#7a8a99;       /* secondary text */
+      --text:#e7f2f2;        /* primary text */
+      --accent:#00e08a;      /* neon green accent */
+      --accent-2:#00b86c;    /* darker accent for hovers */
+      --ring: rgba(0,224,138,0.35); /* glow */
       --shadow: 0 10px 25px rgba(0,0,0,.3);
       --radius: 16px;
       --radius-lg: 22px;
       --maxw: 1200px;
     }
+
     *{box-sizing:border-box;}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
     img{max-width:100%;display:block;}
@@ -54,7 +55,7 @@
 
     /* Hero */
     .hero{position:relative;border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden;}
-    .hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start;padding:72px 20px;}
+    .hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:72px 20px;}
     .hero h1{font-size:clamp(28px,5vw,56px);line-height:1.05;margin:0 0 14px;font-weight:800;}
     .hero p{color:var(--muted);font-size:clamp(14px,2.2vw,18px);}
     .hero .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
@@ -62,33 +63,45 @@
     .btn.primary{background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;border:none;font-weight:800;}
     .btn:hover{border-color:rgba(255,255,255,.22);}
     .glow{position:absolute;inset:auto -20% -35% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,var(--ring),transparent 60%);filter:blur(40px);opacity:.6;pointer-events:none;}
-
-    /* Cards & Grids */
-    .tiles .grid,.grid,.show-grid{display:grid;gap:16px;}
-    .tiles .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:18px;}
-    .show-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:12px;}
-    .card,.hero-card,.prod{background:linear-gradient(180deg,#0f1419,#0b0f12);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;}
+    .hero-card{background:linear-gradient(180deg,#0f1419,#0b0f12);border:1px solid rgba(255,255,255,.06);padding:22px;border-radius:var(--radius-lg);box-shadow:var(--shadow);}
     .spec{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08);}
     .spec:last-child{border-bottom:none;}
+
+    @media (max-width: 900px){
+      .hero .container{grid-template-columns:1fr;padding:48px 20px;}
+    }
+
+    /* Tiles / Services */
+    .tiles{padding:36px 0;}
+    .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;} /* FIXED 3 COLUMNS */
+    @media (max-width: 1024px){.tiles .grid{grid-template-columns:repeat(2,1fr);}}
+    @media (max-width: 640px){.tiles .grid{grid-template-columns:1fr;}}
+
+    .card{background:var(--panel);border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,.06);transition:transform .15s ease, box-shadow .15s ease;}
+    .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.35);}
+    .card h3{margin:10px 0 4px;}
+
+    /* Featured Builds */
+    .showcase{padding:14px 0 64px;}
+    .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .prod{background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;}
     .prod img{aspect-ratio:16/9;object-fit:cover;}
     .prod .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
     .prod .meta h4{margin:0;}
     .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted);}
-    @media (max-width:900px){.hero .container{grid-template-columns:1fr;padding:48px 20px;}}
-
-    /* Contact Form */
-    .contact-section{padding:48px 0;background:var(--panel);border-radius:var(--radius-lg);margin:48px 0;}
-    .contact-section h2{margin-bottom:24px;}
-    .contact-form{display:grid;gap:16px;}
-    .contact-form input,.contact-form textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0b0f12;color:var(--text);font-size:16px;}
-    .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent);}
-    .contact-form button{align-self:start;padding:12px 18px;border-radius:12px;border:none;background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;font-weight:700;cursor:pointer;box-shadow:0 0 0 4px var(--ring), var(--shadow);}
-    .contact-form button:hover{filter:brightness(1.05);}
+    @media (max-width: 900px){.show-grid{grid-template-columns:1fr;}}
 
     /* Support strip */
     .support{background:linear-gradient(90deg,rgba(0,224,138,.08),transparent);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
     .support .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:16px 0;}
     .support .bar span{color:var(--muted);}
+
+    /* Contact Form */
+    .contact-section{padding:36px 0;}
+    .contact-form{display:flex;flex-direction:column;gap:12px;max-width:450px;margin:0 auto;}
+    .contact-form input, .contact-form textarea{padding:10px;border-radius:5px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--text);}
+    .contact-form button{padding:12px 18px;border:none;border-radius:6px;background:var(--accent);color:#0b0f12;font-weight:700;cursor:pointer;}
+    .contact-form button:hover{background:var(--accent-2);}
 
     /* Footer */
     footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 0;color:var(--muted);}
@@ -96,12 +109,11 @@
     footer h5{margin:0 0 10px;color:var(--text);}
     footer a{display:block;padding:6px 0;color:var(--muted);}
     footer a:hover{color:var(--accent);}
-    @media (max-width:900px){footer .cols{grid-template-columns:1fr 1fr}}
-    @media (max-width:540px){footer .cols{grid-template-columns:1fr}}
+    @media (max-width: 900px){footer .cols{grid-template-columns:1fr 1fr;}}
+    @media (max-width: 540px){footer .cols{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="container nav">
       <a class="brand" href="#"><span class="dot" aria-hidden="true"></span> Carpenter IT</a>
@@ -189,7 +201,7 @@
     </div>
   </section>
 
-  <!-- Support strip -->
+  <!-- Support -->
   <section id="support" class="support">
     <div class="container bar">
       <span>Need help now?</span>
@@ -197,19 +209,22 @@
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section id="contact" class="contact-section container">
-    <h2>Contact Us</h2>
-    <form class="contact-form" action="https://formsubmit.co/carpenterit993@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="you@example.com" required>
-      <textarea name="message" rows="5" placeholder="Write your message here" required></textarea>
-      <!-- Hidden fields -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://carpenter-it.com/thanks.html">
-      <button type="submit">Send Message</button>
-    </form>
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <form class="contact-form" action="https://formsubmit.co/carpenterit993@gmail.com" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://carpenter-it.com/thanks.html">
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </section>
 
   <!-- Footer -->
