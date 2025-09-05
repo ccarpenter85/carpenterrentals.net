@@ -3,159 +3,240 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carpenter Rentals - Lebanon, MO</title>
+  <title>Carpenter IT</title>
+  <meta name="description" content="Carpenter IT — PC builds, repairs, and small‑business IT with a clean, modern look." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Reset & base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f3f4f6;
-      color: #222;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: #fff;
-    }
-    a:hover {
-      opacity: 0.9;
+    :root{
+      --bg:#0b0f12;          /* deep charcoal */
+      --panel:#10161b;       /* card background */
+      --muted:#7a8a99;       /* secondary text */
+      --text:#e7f2f2;        /* primary text */
+      --accent:#00e08a;      /* neon green accent reminiscent of DeepCool */
+      --accent-2:#00b86c;    /* darker accent for hovers */
+      --ring: rgba(0,224,138,0.35); /* glow */
+      --shadow: 0 10px 25px rgba(0,0,0,.3);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1200px;
     }
 
-    /* Layout */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(11,15,18,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{color:var(--accent)}
+    .cta{padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;font-weight:700;box-shadow:0 0 0 4px var(--ring), var(--shadow)}
+    .cta:hover{transform:translateY(-1px);filter:brightness(1.05)}
+
+    /* Mobile nav */
+    .menu-btn{display:none;border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:10px}
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .menu-btn{display:inline-flex;gap:8px;align-items:center}
     }
 
-    header {
-      background: #1e3a8a;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #cbd5e1;
+    /* Drawer */
+    .drawer{position:fixed;inset:0 0 0 auto;width:min(88vw,380px);background:#0e1419;transform:translateX(102%);transition:transform .25s ease;box-shadow:-30px 0 60px rgba(0,0,0,.45)}
+    .drawer.open{transform:translateX(0)}
+    .drawer .inner{padding:22px}
+    .drawer a{display:block;padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+
+    /* Hero */
+    .hero{position:relative;border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:72px 20px}
+    .hero h1{font-size:clamp(28px,5vw,56px);line-height:1.05;margin:0 0 14px;font-weight:800}
+    .hero p{color:var(--muted);font-size:clamp(14px,2.2vw,18px)}
+    .hero .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:transparent}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;border:none;font-weight:800}
+    .btn:hover{border-color:rgba(255,255,255,.22)}
+
+    .glow{position:absolute;inset:auto -20% -35% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,var(--ring),transparent 60%);filter:blur(40px);opacity:.6;pointer-events:none}
+
+    .hero-card{background:linear-gradient(180deg,#0f1419,#0b0f12);border:1px solid rgba(255,255,255,.06);padding:22px;border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+    .spec{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+    .spec:last-child{border-bottom:none}
+
+    @media (max-width: 900px){
+      .hero .container{grid-template-columns:1fr;padding:48px 20px}
     }
 
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #1e3a8a;
-    }
+    /* Tiles */
+    .tiles{padding:36px 0}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 4;background:var(--panel);border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,.06);transition:transform .15s ease, box-shadow .15s ease}
+    .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.35)}
+    .card h3{margin:10px 0 4px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,224,138,.12);border:1px solid rgba(0,224,138,.35);color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.4px}
+    @media (max-width: 1024px){.card{grid-column:span 6}}
+    @media (max-width: 640px){.card{grid-column:span 12}}
 
-    p.intro {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: #444;
-    }
+    /* Showcase (products/services) */
+    .showcase{padding:14px 0 64px}
+    .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .prod{background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+    .prod img{aspect-ratio:16/9;object-fit:cover}
+    .prod .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+    .prod .meta h4{margin:0}
+    .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted)}
+    @media (max-width: 900px){.show-grid{grid-template-columns:1fr}}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
+    /* Support strip */
+    .support{background:linear-gradient(90deg,rgba(0,224,138,.08),transparent);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+    .support .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:16px 0}
+    .support .bar span{color:var(--muted)}
 
-    .card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s ease;
-    }
-    .card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      margin-bottom: 1rem;
-      color: #333;
-    }
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 0;color:var(--muted)}
+    footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px}
+    footer h5{margin:0 0 10px;color:var(--text)}
+    footer a{display:block;padding:6px 0;color:var(--muted)}
+    footer a:hover{color:var(--accent)}
+    @media (max-width: 900px){footer .cols{grid-template-columns:1fr 1fr}}
+    @media (max-width: 540px){footer .cols{grid-template-columns:1fr}}
 
-    .btn {
-      display: inline-block;
-      background: #db2777;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-    .btn:hover {
-      background: #be185d;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #777;
-      border-top: 1px solid #ddd;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-    }
+    /* Utility */
+    .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Carpenter Rentals</h1>
-    <p>Serving Lebanon, MO and surrounding areas</p>
+    <div class="container nav">
+      <a class="brand" href="#"><span class="dot" aria-hidden="true"></span> Carpenter IT</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#builds">PC Builds</a>
+        <a href="#support">Support</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="cta" href="#contact">Get a Quote</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="drawer" id="menuBtn">Menu ▾</button>
+    </div>
   </header>
 
-  <main class="container">
-    <section>
-      <h2>Find your next home or getaway</h2>
-      <p class="intro">
-        Whether you're looking for a short-term Airbnb-style rental or a long-term lease, Carpenter Rentals has options to fit your lifestyle and budget.
-      </p>
-    </section>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="inner">
+      <a href="#services" onclick="closeDrawer()">Services</a>
+      <a href="#builds" onclick="closeDrawer()">PC Builds</a>
+      <a href="#support" onclick="closeDrawer()">Support</a>
+      <a href="#about" onclick="closeDrawer()">About</a>
+      <a href="#contact" class="cta" style="display:inline-block;margin-top:14px" onclick="closeDrawer()">Get a Quote</a>
+    </div>
+  </aside>
 
-    <section class="grid">
-      <!-- Airbnb Rental -->
-      <div class="card">
-        <h3 style="color: #db2777;">Peaceful RV Stay on 7 Acres</h3>
-        <p>
-          Experience the great outdoors in comfort with our cozy RV retreat, just minutes from Bennett Spring State Park.
-        </p>
-        <a href="https://www.airbnb.com/rooms/1382696824537083625?check_in=2025-07-06&check_out=2025-07-07&guests=1&adults=1&s=39&unique_share_id=e4ce9cd9-ab4c-46ea-94ef-fb1dae198156"
-           target="_blank" class="btn">View on Airbnb</a>
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="container">
+      <div>
+        <h1>Quiet Power. Clean Builds. <span style="color:var(--accent)">Zero Fuss.</span></h1>
+        <p>We build and service PCs that stay cool and whisper‑quiet, with pro‑grade cable management and smart airflow. Small business support and gaming rigs—done right.</p>
+        <div class="actions">
+          <a class="btn primary" href="#builds">See Featured Builds</a>
+          <a class="btn" href="#services">All Services</a>
+        </div>
+        <div class="tiles container" style="padding:18px 0 0">
+          <div class="grid">
+            <div class="card"><span class="badge">NEW</span><h3>Airflow Optimization</h3><p style="color:var(--muted)">Thermal mapping, fan curves, and dust‑smart layouts.</p></div>
+            <div class="card"><span class="badge">POPULAR</span><h3>Custom PC Builds</h3><p style="color:var(--muted)">Gaming, creator, and office builds with honest parts.</p></div>
+            <div class="card"><span class="badge">FAST</span><h3>Same‑Day Repairs</h3><p style="color:var(--muted)">Diagnostics, OS refresh, and data rescue.</p></div>
+          </div>
+        </div>
       </div>
-
-      <!-- Coming Soon Rental -->
-      <div class="card">
-        <h3 style="color: #16a34a;">Coming Soon: Family Home</h3>
-        <p>
-          3-bedroom, 2-bath house. Available soon for rent.
-        </p>
+      <div class="hero-card" role="region" aria-label="Spec highlight">
+        <h3 style="margin:0 0 10px">Signature Build Spec</h3>
+        <div class="spec"><span>CPU</span><strong>Ryzen 7 5800X3D</strong></div>
+        <div class="spec"><span>Cooling</span><strong>240mm AIO / tuned curves</strong></div>
+        <div class="spec"><span>GPU</span><strong>GeForce RTX 4070</strong></div>
+        <div class="spec"><span>Noise</span><strong>< 28 dBA idle</strong></div>
+        <div class="spec"><span>Warranty</span><strong>2‑Year build support</strong></div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    &copy; 2025 Carpenter Rentals. All rights reserved.
+  <section id="builds" class="showcase container">
+    <h2 style="margin:18px 0 10px;font-size:28px">Featured Builds</h2>
+    <p style="color:var(--muted);margin:0 0 18px">A few recent rigs. Ask about silent profiles and dust‑free routing.</p>
+    <div class="show-grid">
+      <article class="prod">
+        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop" alt="Clean black PC build with green accent lighting" />
+        <div class="meta"><h4>Stealth mATX</h4><span class="pill">Air cooled</span></div>
+      </article>
+      <article class="prod">
+        <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1200&auto=format&fit=crop" alt="RGB watercooled PC build" />
+        <div class="meta"><h4>Creator 240</h4><span class="pill">240mm AIO</span></div>
+      </article>
+      <article class="prod">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop" alt="Compact ITX build" />
+        <div class="meta"><h4>Compact ITX</h4><span class="pill">Small form factor</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="services" class="container" style="padding:8px 0 64px">
+    <h2 style="margin:18px 0 10px;font-size:28px">Services</h2>
+    <div class="grid">
+      <div class="card" style="grid-column:span 6"><h3>Business IT</h3><p style="color:var(--muted)">Network setup, Pi‑hole DNS, secure backups, and Windows Server maintenance.</p><a class="btn" href="#contact">Learn more →</a></div>
+      <div class="card" style="grid-column:span 6"><h3>PC Repair</h3><p style="color:var(--muted)">Thermal paste, PSU swaps, storage upgrades, and data recovery.</p><a class="btn" href="#contact">Book a diagnostic →</a></div>
+    </div>
+  </section>
+
+  <section id="support" class="support">
+    <div class="container bar">
+      <span>Need help now?</span>
+      <a class="btn primary" href="#contact">Start Support Chat</a>
+    </div>
+  </section>
+
+  <footer class="container">
+    <div class="cols">
+      <div>
+        <h5>Carpenter IT</h5>
+        <p>Quiet, cool, and clean PCs. Small‑business IT without the headache.</p>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#builds">Builds</a>
+        <a href="#services">Services</a>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <a href="#contact">Contact</a>
+        <a href="#">Warranty</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <p style="margin-top:24px">© <span id="year"></span> Carpenter IT. All rights reserved.</p>
   </footer>
 
+  <script>
+    const drawer = document.getElementById('drawer');
+    const menuBtn = document.getElementById('menuBtn');
+    function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');menuBtn.setAttribute('aria-expanded','false')}
+    menuBtn.addEventListener('click',()=>{
+      const open = drawer.classList.toggle('open');
+      drawer.setAttribute('aria-hidden', String(!open));
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
