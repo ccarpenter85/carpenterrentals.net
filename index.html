@@ -10,13 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0f12;          /* deep charcoal */
-      --panel:#10161b;       /* card background */
-      --muted:#7a8a99;       /* secondary text */
-      --text:#e7f2f2;        /* primary text */
-      --accent:#00e08a;      /* neon green accent */
-      --accent-2:#00b86c;    /* darker accent for hovers */
-      --ring: rgba(0,224,138,0.35); /* glow */
+      --bg:#0b0f12;
+      --panel:#10161b;
+      --muted:#7a8a99;
+      --text:#e7f2f2;
+      --accent:#00e08a;
+      --accent-2:#00b86c;
+      --ring: rgba(0,224,138,0.35);
       --shadow: 0 10px 25px rgba(0,0,0,.3);
       --radius: 16px;
       --radius-lg: 22px;
@@ -55,7 +55,7 @@
 
     /* Hero */
     .hero{position:relative;border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden;}
-    .hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:72px 20px;}
+    .hero .container{display:grid;grid-template-columns:1fr;gap:28px;align-items:start;padding:72px 20px;}
     .hero h1{font-size:clamp(28px,5vw,56px);line-height:1.05;margin:0 0 14px;font-weight:800;}
     .hero p{color:var(--muted);font-size:clamp(14px,2.2vw,18px);}
     .hero .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
@@ -63,20 +63,12 @@
     .btn.primary{background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;border:none;font-weight:800;}
     .btn:hover{border-color:rgba(255,255,255,.22);}
     .glow{position:absolute;inset:auto -20% -35% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,var(--ring),transparent 60%);filter:blur(40px);opacity:.6;pointer-events:none;}
-    .hero-card{background:linear-gradient(180deg,#0f1419,#0b0f12);border:1px solid rgba(255,255,255,.06);padding:22px;border-radius:var(--radius-lg);box-shadow:var(--shadow);}
-    .spec{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08);}
-    .spec:last-child{border-bottom:none;}
-
-    @media (max-width: 900px){
-      .hero .container{grid-template-columns:1fr;padding:48px 20px;}
-    }
 
     /* Tiles / Services */
     .tiles{padding:36px 0;}
-    .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;} /* FIXED 3 COLUMNS */
+    .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
     @media (max-width: 1024px){.tiles .grid{grid-template-columns:repeat(2,1fr);}}
     @media (max-width: 640px){.tiles .grid{grid-template-columns:1fr;}}
-
     .card{background:var(--panel);border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,.06);transition:transform .15s ease, box-shadow .15s ease;}
     .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.35);}
     .card h3{margin:10px 0 4px;}
@@ -159,9 +151,9 @@
               Basic PC cleanup / tune-up: $50/hr<br>
               Virus removal: $60/hr<br>
               Home Wi-Fi troubleshooting: $55–$65/hr<br>
-              Smart home setup (cameras, Alexa): $60–$75/hr<br>
+              Smart home setup: $60–$75/hr<br>
               Network setup / router config: $60/hr<br>
-              On-site tech support (printers, hardware): $65
+              On-site tech support: $65
             </p></div>
             <div class="card"><h3>Optional Add-ons</h3><p style="color:var(--muted)">
               • Monthly service plans (remote support + 1 onsite visit per quarter)<br>
@@ -169,14 +161,6 @@
             </p></div>
           </div>
         </div>
-      </div>
-      <div class="hero-card" role="region" aria-label="Spec highlight">
-        <h3 style="margin:0 0 10px">Signature Build Spec</h3>
-        <div class="spec"><span>CPU</span><strong>Ryzen 7 5800X3D</strong></div>
-        <div class="spec"><span>Cooling</span><strong>240mm AIO / tuned curves</strong></div>
-        <div class="spec"><span>GPU</span><strong>GeForce RTX 4070</strong></div>
-        <div class="spec"><span>Noise</span><strong>< 28 dBA idle</strong></div>
-        <div class="spec"><span>Warranty</span><strong>2‑Year build support</strong></div>
       </div>
     </div>
   </section>
