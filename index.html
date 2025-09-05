@@ -10,9 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0f12; --panel:#10161b; --muted:#7a8a99; --text:#e7f2f2;
-      --accent:#00e08a; --accent-2:#00b86c; --ring: rgba(0,224,138,0.35);
-      --shadow: 0 10px 25px rgba(0,0,0,.3); --radius: 16px; --radius-lg: 22px; --maxw: 1200px;
+      --bg:#0b0f12;
+      --panel:#10161b;
+      --muted:#7a8a99;
+      --text:#e7f2f2;
+      --accent:#00e08a;
+      --accent-2:#00b86c;
+      --ring: rgba(0,224,138,0.35);
+      --shadow: 0 10px 25px rgba(0,0,0,.3);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1200px;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
@@ -52,7 +60,7 @@
     @media (max-width: 900px){.hero .container{grid-template-columns:1fr;padding:48px 20px}}
     .tiles{padding:36px 0}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .card{grid-column:span 4;background:var(--panel);border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,.06);transition:transform .15s ease, box-shadow .15s ease}
+    .card{grid-column:span 4;background:var(--panel);border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,.06);transition:transform .15s ease, box-shadow .15s ease; min-height:auto;}
     .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.35)}
     .card h3{margin:10px 0 4px}
     .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,224,138,.12);border:1px solid rgba(0,224,138,.35);color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.4px}
@@ -116,17 +124,29 @@
         </div>
         <div class="tiles container" style="padding:18px 0 0">
           <div class="grid">
-            <div class="card"><span class="badge">NEW</span><h3>Software Testing</h3><p style="color:var(--muted)">Functional, regression, and automated testing to guarantee your software meets all requirements.</p></div>
-            <div class="card"><span class="badge">POPULAR</span><h3>Network Testing</h3><p style="color:var(--muted)">Evaluate network performance, security, and resilience under real-world conditions.</p></div>
-            <div class="card"><span class="badge">FAST</span><h3>Performance Testing</h3><p style="color:var(--muted)">Stress, load, and scalability testing to ensure your applications can handle peak demand.</p></div>
+            <div class="card" style="grid-column:span 4; min-height:auto; padding:24px;">
+              <span class="badge">NEW</span>
+              <h3>Software Testing</h3>
+              <p style="color:var(--muted); line-height:1.5;">Functional, regression, and automated testing to guarantee your software meets all requirements. Flexible reporting included.</p>
+            </div>
+            <div class="card" style="grid-column:span 4; min-height:auto; padding:24px;">
+              <span class="badge">POPULAR</span>
+              <h3>Network Testing</h3>
+              <p style="color:var(--muted); line-height:1.5;">Evaluate network performance, security, and resilience under real-world conditions. Includes optional network diagram.</p>
+            </div>
+            <div class="card" style="grid-column:span 4; min-height:auto; padding:24px;">
+              <span class="badge">FAST</span>
+              <h3>Performance Testing</h3>
+              <p style="color:var(--muted); line-height:1.5;">Stress, load, and scalability testing to ensure your applications handle peak demand. Custom metrics available.</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="hero-card" role="region" aria-label="Spec highlight">
         <h3 style="margin:0 0 10px">Signature Build Spec</h3>
-        <div class="spec"><span>CPU</span><strong>Custom Intel / AMD Builds</strong></div>
-        <div class="spec"><span>Cooling</span><strong>Optimal airflow & quiet fans</strong></div>
-        <div class="spec"><span>GPU</span><strong>High-performance graphics</strong></div>
+        <div class="spec"><span>CPU</span><strong>Ryzen 7 5800X3D</strong></div>
+        <div class="spec"><span>Cooling</span><strong>240mm AIO / tuned curves</strong></div>
+        <div class="spec"><span>GPU</span><strong>GeForce RTX 4070</strong></div>
         <div class="spec"><span>Noise</span><strong>< 28 dBA idle</strong></div>
         <div class="spec"><span>Warranty</span><strong>2‑Year build support</strong></div>
       </div>
@@ -155,15 +175,35 @@
   <section id="services" class="container" style="padding:8px 0 64px">
     <h2 style="margin:18px 0 10px;font-size:28px">Services</h2>
     <div class="grid">
-      <div class="card" style="grid-column:span 6"><h3>PC Building</h3><p style="color:var(--muted)">Custom-built PCs designed for power, performance, and your exact needs — from high-speed gaming rigs to reliable workstations.</p><a class="btn" href="#contact">Learn more →</a></div>
-      <div class="card" style="grid-column:span 6"><h3>IT & Network Support</h3><p style="color:var(--muted)">Network setup, Pi-hole DNS, secure backups, virus removal, and home/office tech support.</p><a class="btn" href="#contact">Book a diagnostic →</a></div>
+      <div class="card" style="grid-column:span 4; padding:20px;">
+        <h3>PC Building</h3>
+        <p style="color:var(--muted); line-height:1.5;">Custom-built PCs designed for power, performance, and your exact needs — from high-speed gaming rigs to reliable workstations.</p>
+      </div>
+      <div class="card" style="grid-column:span 4; padding:20px;">
+        <h3>Optional Job Rates</h3>
+        <p style="color:var(--muted); line-height:1.5;">Hourly diagnostic & setup rates, additional cable management, airflow tuning, and component optimization.</p>
+      </div>
+      <div class="card" style="grid-column:span 4; padding:20px;">
+        <h3>Optional Add-Ons</h3>
+        <p style="color:var(--muted); line-height:1.5;">RGB lighting, extra storage drives, custom water loops, and extended warranty options.</p>
+      </div>
+      <div class="card" style="grid-column:span 6; padding:20px;">
+        <h3>IT & Network Support</h3>
+        <p style="color:var(--muted); line-height:1.5;">Network setup, Pi-hole DNS, secure backups, virus removal, and home/office tech support.</p>
+        <a class="btn" href="#contact">Book a diagnostic →</a>
+      </div>
+      <div class="card" style="grid-column:span 6; padding:20px;">
+        <h3>PC Repair</h3>
+        <p style="color:var(--muted); line-height:1.5;">Thermal paste, PSU swaps, storage upgrades, and data recovery.</p>
+        <a class="btn" href="#contact">Book a diagnostic →</a>
+      </div>
     </div>
   </section>
 
   <section id="support" class="support">
     <div class="container bar">
       <span>Need help now?</span>
-      <a class="btn primary" href="mailto:carpenterit993@gmail.com">Start Support Chat</a>
+      <a class="btn primary" href="#contact">Start Support Chat</a>
     </div>
   </section>
 
@@ -171,7 +211,7 @@
     <div class="cols">
       <div>
         <h5>Carpenter IT</h5>
-        <p>Comprehensive testing, PC builds, and network support. Keeping you connected and secure.</p>
+        <p>Quiet, cool, and clean PCs. Small‑business IT without the headache.</p>
       </div>
       <div>
         <h5>Company</h5>
@@ -181,7 +221,7 @@
       </div>
       <div>
         <h5>Support</h5>
-        <a href="mailto:carpenterit993@gmail.com">Contact</a>
+        <a href="#contact">Contact</a>
         <a href="#">Warranty</a>
         <a href="#">FAQ</a>
       </div>
