@@ -5,117 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carpenter IT | Professional Technology Solutions</title>
   <style>
-    /* Base Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #0f172a, #1e293b);
+      background: #0b0f19;
       color: #e2e8f0;
       line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #0ea5e9;
-    }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { color: #0ea5e9; }
 
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 2rem;
-      flex: 1;
-    }
+    /* Layout Container */
+    .container { max-width: 1200px; margin: auto; padding: 0 2rem; }
 
     /* Header */
     header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
-      padding: 2rem 0;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 1000px;
-      margin: 0 auto;
     }
     header .brand {
       display: flex;
       align-items: center;
-      text-decoration: none;
     }
     header .logo {
-      max-width: 60px;
-      margin-right: 1rem;
+      max-width: 50px;
+      margin-right: 0.75rem;
       transition: transform 0.3s ease;
     }
-    header .logo:hover {
-      transform: scale(1.05);
-    }
+    header .logo:hover { transform: scale(1.05); }
     header h1 {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       color: #38bdf8;
+      font-weight: bold;
       letter-spacing: 1px;
     }
 
-    /* Sections */
-    section {
-      margin: 3rem 0;
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 6rem 1rem 4rem;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
     }
-    section h2 {
+    .hero h2 {
+      font-size: 2.5rem;
       color: #38bdf8;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      border-left: 5px solid #38bdf8;
-      padding-left: 10px;
-    }
-    section p {
-      color: #cbd5e1;
-      font-size: 1.1rem;
       margin-bottom: 1rem;
     }
+    .hero p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      max-width: 700px;
+      margin: auto;
+    }
 
-    /* Services grid */
-    ul.services {
-      list-style: none;
+    /* Section Headings */
+    section { padding: 4rem 0; }
+    section h2 {
+      color: #38bdf8;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    section h2::after {
+      content: "";
+      width: 80px;
+      height: 3px;
+      background: #38bdf8;
+      display: block;
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* About */
+    #about p {
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.1rem;
+      color: #cbd5e1;
+    }
+
+    /* Services */
+    .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
     }
-    ul.services li {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.5rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    .services li {
+      list-style: none;
+      background: rgba(255,255,255,0.03);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
-    ul.services li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    .services li:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
     }
-    ul.services li h3 {
+    .services h3 {
       color: #f8fafc;
       margin-bottom: 0.75rem;
       font-size: 1.3rem;
     }
+    .services p {
+      color: #cbd5e1;
+      font-size: 1rem;
+    }
 
-    /* Contact form */
+    /* Contact Form */
+    .contact-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     form {
       background: rgba(255, 255, 255, 0.03);
       padding: 2rem;
       border-radius: 10px;
-      max-width: 450px;
-      margin: 0 auto;
+      max-width: 500px;
+      width: 100%;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.05);
     }
     form label {
       font-weight: 600;
@@ -127,9 +149,9 @@
       width: 100%;
       padding: 0.75rem;
       margin-bottom: 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 5px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
       color: #e2e8f0;
       font-size: 1rem;
     }
@@ -147,9 +169,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    form button:hover {
-      background: #0ea5e9;
-    }
+    form button:hover { background: #0ea5e9; }
 
     /* Footer */
     footer {
@@ -158,99 +178,87 @@
       font-size: 0.9rem;
       color: #94a3b8;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 3rem;
+      background: #0f172a;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      header .brand {
-        flex-direction: column;
-      }
-      header .logo {
-        margin: 0 0 1rem 0;
-        max-width: 80px;
-      }
-      header h1 {
-        font-size: 2rem;
-      }
-      section {
-        margin: 2rem 0;
-        padding: 0 1rem;
-      }
-      ul.services {
-        grid-template-columns: 1fr;
-      }
-      form {
-        width: 100%;
-        padding: 1.5rem;
-      }
+      .hero h2 { font-size: 2rem; }
+      header h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <a href="index.html" class="brand">
-        <img src="LOGO.PNG" alt="Carpenter IT Logo" class="logo">
-        <h1>Carpenter IT</h1>
-      </a>
-    </header>
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="brand">
+      <img src="LOGO.PNG" alt="Carpenter IT Logo" class="logo">
+      <h1>Carpenter IT</h1>
+    </a>
+  </header>
 
-    <section id="about">
-      <h2>About Us</h2>
-      <p>
-        At Carpenter IT, we specialize in comprehensive testing for your home network and smart devices, we keep you connected and secure. From network security assessments, to smart doorbell installations, we ensure your systems perform flawlessly and securely.
-      </p>
-    </section>
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Professional Technology Solutions</h2>
+    <p>From home networks to custom PCs, Carpenter IT keeps your systems connected, secure, and performing at their best.</p>
+  </section>
 
-    <section id="services">
-      <h2>Our Services</h2>
-      <ul class="services">
-        <li>
-          <h3>Software Testing</h3>
-          <p>Functional, regression, and automated testing to guarantee your software meets all requirements.</p>
-        </li>
-        <li>
-          <h3>Network Testing</h3>
-          <p>Evaluate network performance, security, and resilience under real-world conditions.</p>
-        </li>
-        <li>
-          <h3>Performance Testing</h3>
-          <p>Stress, load, and scalability testing to ensure your applications can handle peak demand.</p>
-        </li>
-        <li>
-          <h3><a href="pc-builds.html" style="color:inherit; text-decoration:none;">PC Building</a></h3>
-          <p>Custom-built PCs designed for power, performance, and your exact needs — from high-speed gaming rigs to reliable workstations.</p>
-        </li>
-        <li>
-          <h3>Example Jobs & Rates</h3>
-          <p>
-            Basic PC cleanup / tune-up: $50/hr<br>
-            Virus removal: $60/hr<br>
-            Home Wi-Fi troubleshooting: $55–$65/hr<br>
-            Smart home setup (cameras, Alexa): $60–$75/hr<br>
-            Network setup / router config: $60/hr<br>
-            On-site tech support (printers, hardware): $65
-          </p>
-        </li>
-        <li>
-          <h3>Optional Add-ons</h3>
-          <p>
-            • Monthly service plans (remote support + 1 onsite visit per quarter)<br>
-            • Hardware recommendations and install service packages
-          </p>
-        </li>
-      </ul>
-    </section>
+  <!-- About -->
+  <section id="about" class="container">
+    <h2>About Us</h2>
+    <p>
+      At Carpenter IT, we specialize in comprehensive testing for your home network and smart devices. 
+      From network security assessments to smart doorbell installations, we ensure your systems perform 
+      flawlessly and securely.
+    </p>
+  </section>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
+  <!-- Services -->
+  <section id="services" class="container">
+    <h2>Our Services</h2>
+    <ul class="services">
+      <li>
+        <h3>Software Testing</h3>
+        <p>Functional, regression, and automated testing to guarantee your software meets all requirements.</p>
+      </li>
+      <li>
+        <h3>Network Testing</h3>
+        <p>Evaluate network performance, security, and resilience under real-world conditions.</p>
+      </li>
+      <li>
+        <h3>Performance Testing</h3>
+        <p>Stress, load, and scalability testing to ensure your applications can handle peak demand.</p>
+      </li>
+      <li>
+        <h3><a href="pc-builds.html" style="color:inherit;">PC Building</a></h3>
+        <p>Custom-built PCs designed for power, performance, and your exact needs — from gaming rigs to reliable workstations.</p>
+      </li>
+      <li>
+        <h3>Example Jobs & Rates</h3>
+        <p>
+          Basic PC cleanup / tune-up: $50/hr<br>
+          Virus removal: $60/hr<br>
+          Home Wi-Fi troubleshooting: $55–$65/hr<br>
+          Smart home setup (cameras, Alexa): $60–$75/hr<br>
+          Network setup / router config: $60/hr<br>
+          On-site tech support (printers, hardware): $65
+        </p>
+      </li>
+      <li>
+        <h3>Optional Add-ons</h3>
+        <p>
+          • Monthly service plans (remote support + 1 onsite visit per quarter)<br>
+          • Hardware recommendations and install service packages
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2>Contact Us</h2>
+    <div class="contact-wrapper">
       <form action="https://formsubmit.co/carpenterit993@gmail.com" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required />
@@ -268,9 +276,10 @@
 
         <button type="submit">Send Message</button>
       </form>
-    </section>
-  </div>
+    </div>
+  </section>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Carpenter IT. All rights reserved.
   </footer>
