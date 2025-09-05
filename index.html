@@ -14,9 +14,9 @@
       --panel:#10161b;
       --muted:#9aa;
       --text:#e7f2f2;
-      --accent:#00e08a;
-      --accent-2:#00b86c;
-      --ring: rgba(0,224,138,0.35);
+      --accent:#0088FF;    /* changed green to blue */
+      --accent-2:#005FCC;  /* darker blue variant */
+      --ring: rgba(0,136,255,0.35); /* blue glow */
       --shadow: 0 10px 25px rgba(0,0,0,.3);
       --radius: 16px;
       --radius-lg: 22px;
@@ -32,22 +32,12 @@
     /* Header */
     header{position:sticky;top:0;z-index:50;background:rgba(11,15,18,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06);}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px;}
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      letter-spacing:.2px;
-    }
-    .brand-logo{
-      width:36px;
-      height:36px;
-      object-fit:contain;
-    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;}
+    .brand img{height:40px;width:auto;} /* logo size */
     .nav-links{display:flex;gap:22px;align-items:center;}
     .nav-links a{opacity:.9;transition:all .2s;}
     .nav-links a:hover{color:var(--accent);}
-    .cta{padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;font-weight:700;box-shadow:0 0 0 4px var(--ring), var(--shadow);transition:all .25s ease;}
+    .cta{padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39f0ff);color:#0b0f12;font-weight:700;box-shadow:0 0 0 4px var(--ring), var(--shadow);transition:all .25s ease;}
     .cta:hover{transform:translateY(-2px);filter:brightness(1.1);}
 
     /* Mobile nav */
@@ -65,13 +55,13 @@
     .drawer a:hover{color:var(--accent);}
 
     /* Hero */
-    .hero{position:relative;overflow:hidden;background: radial-gradient(circle at top left, rgba(0,224,138,0.05), transparent 60%), linear-gradient(to bottom, #0d1318, #0b0f12);}
+    .hero{position:relative;overflow:hidden;background: radial-gradient(circle at top left, rgba(0,136,255,0.05), transparent 60%), linear-gradient(to bottom, #0d1318, #0b0f12);}
     .hero .container{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:100px 20px;}
     .hero h1{font-size:clamp(40px,6vw,64px);line-height:1.1;margin:0 0 18px;font-weight:800;letter-spacing:-0.5px;}
     .hero p{color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.6;}
     .hero .actions{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:transparent;transition:all .25s ease;}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#39ffb0);color:#0b0f12;border:none;font-weight:800;}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#39f0ff);color:#0b0f12;border:none;font-weight:800;}
     .btn:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px);}
     .glow{position:absolute;inset:auto -20% -35% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,var(--ring),transparent 60%);filter:blur(60px);opacity:.7;pointer-events:none;}
 
@@ -91,7 +81,13 @@
     .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
     .prod{position:relative;background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(20px);transition:all .6s;}
     .prod.visible{opacity:1;transform:translateY(0);}
-    .prod img{aspect-ratio:16/9;object-fit:cover;}
+    .prod img{
+      aspect-ratio:16/9;
+      object-fit:cover;
+      transform: scale(1.2);
+      transition: transform 0.3s ease;
+    }
+    .prod:hover img{transform: scale(1.25);}
     .prod .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
     .prod .meta h4{margin:0;}
     .prod .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted);}
@@ -100,7 +96,7 @@
     @media (max-width: 900px){.show-grid{grid-template-columns:1fr;}}
 
     /* Support strip */
-    .support{background:linear-gradient(90deg,rgba(0,224,138,.08),transparent);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+    .support{background:linear-gradient(90deg,rgba(0,136,255,.08),transparent);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
     .support .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:20px 0;}
     .support .bar span{color:var(--muted);}
 
@@ -112,7 +108,7 @@
     .contact-form button:hover{background:var(--accent-2);transform:translateY(-2px);}
 
     /* Footer */
-    footer{background:#090c0f;padding:60px 20px;color:var(--muted);margin-top:40px;border-top:2px solid rgba(0,224,138,0.15);}
+    footer{background:#090c0f;padding:60px 20px;color:var(--muted);margin-top:40px;border-top:2px solid rgba(0,136,255,0.15);}
     footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
     footer h5{margin:0 0 12px;color:var(--text);font-size:16px;font-weight:600;}
     footer a{display:block;padding:6px 0;color:var(--muted);}
@@ -126,7 +122,7 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#">
-        <img src="LOGO.PNG" alt="Carpenter IT Logo" class="brand-logo">
+        <img src="images/LOGO.PNG" alt="Carpenter IT Logo" />
         Carpenter IT
       </a>
       <nav class="nav-links" aria-label="Primary">
