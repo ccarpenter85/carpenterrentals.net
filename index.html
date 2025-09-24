@@ -1,297 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carpenter IT</title>
-  <meta name="description" content="Carpenter IT — PC builds, repairs, and small-business IT with a clean, modern look." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CoolingCo — Premium PC Cooling</title>
   <style>
     :root{
-      --bg:#0b0f12;
-      --panel:#10161b;
-      --muted:#9aa;
-      --text:#e7f2f2;
-      --accent:#0088FF;    /* changed green to blue */
-      --accent-2:#005FCC;  /* darker blue variant */
-      --ring: rgba(0,136,255,0.35); /* blue glow */
-      --shadow: 0 10px 25px rgba(0,0,0,.3);
-      --radius: 16px;
-      --radius-lg: 22px;
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #9aa6bd;
+      --accent: #1fb6ff;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 12px;
       --maxw: 1200px;
+      --gap: 20px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth;}
-    img{max-width:100%;display:block;}
-    a{color:inherit;text-decoration:none;}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
-
-    /* Header */
-    header{position:sticky;top:0;z-index:50;background:rgba(11,15,18,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06);}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px;}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;}
-    .brand img{height:40px;width:auto;} /* logo size */
-    .nav-links{display:flex;gap:22px;align-items:center;}
-    .nav-links a{opacity:.9;transition:all .2s;}
-    .nav-links a:hover{color:var(--accent);}
-    .cta{padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39f0ff);color:#0b0f12;font-weight:700;box-shadow:0 0 0 4px var(--ring), var(--shadow);transition:all .25s ease;}
-    .cta:hover{transform:translateY(-2px);filter:brightness(1.1);}
-
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#071021 0%, #071827 60%), var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px;}
+    header{
+      display:flex;align-items:center;justify-content:space-between;padding:6px 0;
+    }
+    .logo{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo .badge{
+      width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#3b82f6);
+      display:flex;align-items:center;justify-content:center;font-weight:800;color:#041023;
+      box-shadow:0 6px 18px rgba(31,182,255,0.12), inset 0 -6px 12px rgba(255,255,255,0.06);
+    }
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    .cta{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0b6cff,#2dd4bf);color:#041023;font-weight:700;text-decoration:none}
     /* Mobile nav */
-    .menu-btn{display:none;border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:10px;}
-    @media (max-width: 900px){
-      .nav-links{display:none;}
-      .menu-btn{display:inline-flex;gap:8px;align-items:center;}
-    }
-
-    /* Drawer */
-    .drawer{position:fixed;inset:0 0 0 auto;width:min(88vw,380px);background:#0e1419;transform:translateX(102%);transition:transform .25s ease;box-shadow:-30px 0 60px rgba(0,0,0,.45);}
-    .drawer.open{transform:translateX(0);}
-    .drawer .inner{padding:22px;}
-    .drawer a{display:block;padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .2s;}
-    .drawer a:hover{color:var(--accent);}
-
+    .hamburger{display:none;padding:8px;border-radius:8px;background:var(--glass);cursor:pointer}
     /* Hero */
-    .hero{position:relative;overflow:hidden;background: radial-gradient(circle at top left, rgba(0,136,255,0.05), transparent 60%), linear-gradient(to bottom, #0d1318, #0b0f12);}
-    .hero .container{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:100px 20px;}
-    .hero h1{font-size:clamp(40px,6vw,64px);line-height:1.1;margin:0 0 18px;font-weight:800;letter-spacing:-0.5px;}
-    .hero p{color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.6;}
-    .hero .actions{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:transparent;transition:all .25s ease;}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#39f0ff);color:#0b0f12;border:none;font-weight:800;}
-    .btn:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px);}
-    .glow{position:absolute;inset:auto -20% -35% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,var(--ring),transparent 60%);filter:blur(60px);opacity:.7;pointer-events:none;}
-
-    /* Tiles / Services */
-    .tiles{padding:50px 0 20px;}
-    .tiles .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-    @media (max-width: 1024px){.tiles .grid{grid-template-columns:repeat(2,1fr);}}
-    @media (max-width: 640px){.tiles .grid{grid-template-columns:1fr;}}
-    .card{background:var(--panel);border-radius:var(--radius);padding:22px;border:1px solid rgba(255,255,255,.06);transition:transform .25s ease, box-shadow .25s ease, opacity .6s, transform .6s;opacity:0;transform:translateY(20px);}
-    .card.visible{opacity:1;transform:translateY(0);}
-    .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 16px 32px rgba(0,0,0,.45);}
-    .card h3{margin:10px 0 6px;}
-    .card .icon{font-size:28px;color:var(--accent);margin-bottom:12px;display:inline-block;}
-
-    /* Featured Builds */
-    .showcase{padding:70px 0;}
-    .show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-    .prod{position:relative;background:linear-gradient(180deg,#11171d,#0c1116);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(20px);transition:all .6s;}
-    .prod.visible{opacity:1;transform:translateY(0);}
-    .prod img{
-      aspect-ratio:16/9;
-      object-fit:cover;
-      transform: scale(1.2);
-      transition: transform 0.3s ease;
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:var(--gap);
+      align-items:center;
+      margin:28px 0 36px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:26px;border-radius:16px;
+      box-shadow:0 8px 30px rgba(3,7,18,0.6);
     }
-    .prod:hover img{transform: scale(1.25);}
-    .prod .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
-    .prod .meta h4{margin:0;}
-    .prod .pill{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:var(--muted);}
-    .prod::after{content:"View Specs";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:var(--accent);font-weight:600;opacity:0;transition:opacity .3s ease;}
-    .prod:hover::after{opacity:1;}
-    @media (max-width: 900px){.show-grid{grid-template-columns:1fr;}}
-
-    /* Support strip */
-    .support{background:linear-gradient(90deg,rgba(0,136,255,.08),transparent);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
-    .support .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:20px 0;}
-    .support .bar span{color:var(--muted);}
-
-    /* Contact Form */
-    .contact-section{padding:70px 0;}
-    .contact-form{display:flex;flex-direction:column;gap:14px;max-width:450px;margin:0 auto;}
-    .contact-form input, .contact-form textarea{padding:12px;border-radius:6px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--text);}
-    .contact-form button{padding:12px 18px;border:none;border-radius:6px;background:var(--accent);color:#0b0f12;font-weight:700;cursor:pointer;transition:all .25s;}
-    .contact-form button:hover{background:var(--accent-2);transform:translateY(-2px);}
-
-    /* Footer */
-    footer{background:#090c0f;padding:60px 20px;color:var(--muted);margin-top:40px;border-top:2px solid rgba(0,136,255,0.15);}
-    footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
-    footer h5{margin:0 0 12px;color:var(--text);font-size:16px;font-weight:600;}
-    footer a{display:block;padding:6px 0;color:var(--muted);}
-    footer a:hover{color:var(--accent);}
-    footer p{font-size:14px;line-height:1.6;}
-    @media (max-width: 900px){footer .cols{grid-template-columns:1fr 1fr;}}
-    @media (max-width: 540px){footer .cols{grid-template-columns:1fr;}}
+    .hero h1{margin:0;font-size:34px;letter-spacing:-0.02em}
+    .hero p{color:var(--muted);margin-top:10px}
+    .hero .actions{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+    .btn.primary{background:var(--accent);color:#041023}
+    .btn.light{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .hero-visual{
+      display:flex;flex-direction:column;align-items:center;gap:12px;
+    }
+    .hero-visual .image{
+      width:100%;height:240px;border-radius:12px;background:
+      linear-gradient(135deg,#082033 0%, #07122a 100%);
+      display:flex;align-items:center;justify-content:center;color:var(--muted);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    /* Product grid */
+    .section-title{display:flex;align-items:center;justify-content:space-between}
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+    .card .img{height:140px;border-radius:10px;background:#071428;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+    .card h3{margin:0;font-size:16px}
+    .price{margin-top:8px;font-weight:700}
+    .muted{color:var(--muted);font-size:13px}
+    /* footer */
+    footer{margin-top:36px;padding:18px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    .socials{display:flex;gap:12px;color:var(--muted)}
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:18px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .wrap{padding:14px}
+      nav{display:none}
+      .hamburger{display:block}
+      .grid{grid-template-columns:1fr}
+      header{gap:10px}
+    }
+    /* simple utilities */
+    .center{text-align:center}
+    .muted-small{color:var(--muted);font-size:13px}
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#">
-  <img src="images/LOGO.PNG" alt="Carpenter IT Logo" style="height:40px; width:auto;" />
-  Carpenter IT
-</a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#services">Services</a>
-        <a href="#builds">PC Builds</a>
-        <a href="#support">Support</a>
-        <a href="#about">About</a>
-      </nav>
-      <a class="cta" href="#contact">Get a Quote</a>
-      <button class="menu-btn" aria-expanded="false" aria-controls="drawer" id="menuBtn">Menu ▾</button>
-    </div>
-  </header>
-
-  <aside class="drawer" id="drawer" aria-hidden="true">
-    <div class="inner">
-      <a href="#services" onclick="closeDrawer()">Services</a>
-      <a href="#builds" onclick="closeDrawer()">PC Builds</a>
-      <a href="#support" onclick="closeDrawer()">Support</a>
-      <a href="#about" onclick="closeDrawer()">About</a>
-      <a href="#contact" class="cta" style="display:inline-block;margin-top:14px" onclick="closeDrawer()">Get a Quote</a>
-    </div>
-  </aside>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="glow" aria-hidden="true"></div>
-    <div class="container">
-      <div>
-        <h1>Reliable, Modern, <span style="color:var(--accent)"> Professional.</span></h1>
-        <p>Specializing in comprehensive testing for your home network and smart devices, we keep you connected and secure. From network security assessments, to smart doorbell installations, we ensure your systems perform flawlessly and securely.</p>
-        <div class="actions">
-          <a class="btn primary" href="#builds">See Featured Builds</a>
-          <a class="btn" href="#services">All Services</a>
-        </div>
-        <div class="tiles container">
-          <div class="grid">
-            <div class="card"><span class="icon">💻</span><h3>Software Testing</h3><p style="color:var(--muted)">Functional, regression, and automated testing to guarantee your software meets all requirements.</p></div>
-            <div class="card"><span class="icon">🌐</span><h3>Network Testing</h3><p style="color:var(--muted)">Evaluate network performance, security, and resilience under real-world conditions.</p></div>
-            <div class="card"><span class="icon">⚡</span><h3>Performance Testing</h3><p style="color:var(--muted)">Stress, load, and scalability testing to ensure your applications can handle peak demand.</p></div>
-            <div class="card"><span class="icon">🛠️</span><h3>PC Building</h3><p style="color:var(--muted)">Custom-built PCs designed for power, performance, and your exact needs — from high-speed gaming rigs to reliable workstations.</p></div>
-            <div class="card"><span class="icon">📊</span><h3>Example Jobs & Rates</h3><p style="color:var(--muted)">
-              Basic PC cleanup / tune-up: $50/hr<br>
-              Virus removal: $60/hr<br>
-              Home Wi-Fi troubleshooting: $55/hr<br>
-              Smart home setup: $60–$75/hr<br>
-              Network setup / router config: $60/hr<br>
-              On-site tech support: $65
-            </p></div>
-            <div class="card"><span class="icon">➕</span><h3>Optional Add-ons</h3><p style="color:var(--muted)">
-              • Monthly service plans (remote support + 1 onsite visit per quarter)<br>
-              • Hardware recommendations and install service packages
-            </p></div>
+  <div class="wrap">
+    <header>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="logo" aria-label="CoolingCo">
+          <div class="badge">C</div>
+          <div>
+            <div style="font-size:16px">CoolingCo</div>
+            <div class="muted-small">Performance Cooling</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Featured Builds -->
-  <section id="builds" class="showcase container">
-    <h2 style="margin:0 0 14px;font-size:32px">Featured Builds</h2>
-    <p style="color:var(--muted);margin:0 0 22px">A few recent rigs. Ask about silent profiles and dust-free routing.</p>
-    <div class="show-grid">
-      <article class="prod">
-  <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop" alt="Clean black PC build with blue accent lighting" />
-  <div class="meta">
-    <h4><a href="build-stealth-matx.html" style="color:inherit;text-decoration:none">Stealth mATX</a></h4>
-    <span class="pill">Air cooled</span>
+      <nav aria-label="Main navigation">
+        <a href="#" aria-current="page">Products</a>
+        <a href="#">Deals</a>
+        <a href="#">Support</a>
+        <a href="#">Where to Buy</a>
+        <a class="cta" href="#">Buy Now</a>
+      </nav>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="hamburger" id="hambtn" aria-label="Open menu">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">High-performance cooling for gamers & creators</h1>
+          <p>Quiet fans, efficient radiators, and RGB-ready designs. Engineered to keep your system cool under load.</p>
+          <div class="actions">
+            <a class="btn primary" href="#">Shop cooling</a>
+            <a class="btn light" href="#">Compare models</a>
+          </div>
+
+          <div style="margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:520px">
+            <div class="card" style="padding:10px">
+              <div class="muted-small">Best seller</div>
+              <div style="font-weight:800">StormFan 240</div>
+              <div class="muted-small">AIO liquid cooler — 240mm radiator</div>
+            </div>
+            <div class="card" style="padding:10px">
+              <div class="muted-small">Compact</div>
+              <div style="font-weight:800">MiniCool Pro</div>
+              <div class="muted-small">Low-profile cooler — ideal for SFF builds</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-hidden="false">
+          <div class="image">
+            <!-- Replace with your product art -->
+            <img src="https://via.placeholder.com/360x200?text=Product+Art" alt="product art" style="max-width:100%;border-radius:8px">
+          </div>
+          <div class="muted-small center">Quiet. Efficient. Built to last.</div>
+        </aside>
+      </section>
+
+      <section aria-labelledby="products" style="margin-top:6px">
+        <div class="section-title">
+          <h2 id="products" style="margin:0">Featured Products</h2>
+          <div class="muted-small">Showing popular picks</div>
+        </div>
+
+        <div class="grid" role="list">
+          <!-- Card 1 -->
+          <article class="card" role="listitem">
+            <div class="img"><img src="https://via.placeholder.com/380x140?text=240mm+AIO" alt="" style="max-width:100%;border-radius:6px"></div>
+            <h3>StormFan 240 AIO</h3>
+            <div class="muted">All-in-one liquid cooler with dual 120mm fans</div>
+            <div class="price">$109.99</div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card" role="listitem">
+            <div class="img"><img src="https://via.placeholder.com/380x140?text=120mm+Fan+Pack" alt="" style="max-width:100%;border-radius:6px"></div>
+            <h3>HyperFlow Fan Pack (3x120)</h3>
+            <div class="muted">High static pressure, low noise</div>
+            <div class="price">$49.99</div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card" role="listitem">
+            <div class="img"><img src="https://via.placeholder.com/380x140?text=RGB+Controller" alt="" style="max-width:100%;border-radius:6px"></div>
+            <h3>ARGB Controller Pro</h3>
+            <div class="muted">Sync your RGB across the system</div>
+            <div class="price">$29.99</div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card" role="listitem">
+            <div class="img"><img src="https://via.placeholder.com/380x140?text=360mm+AIO" alt="" style="max-width:100%;border-radius:6px"></div>
+            <h3>StormFan 360 Elite</h3>
+            <div class="muted">3x120mm radiator — for extreme cooling</div>
+            <div class="price">$159.99</div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="card" role="listitem">
+            <div class="img"><img src="https://via.placeholder.com/380x140?text=Low+Profile+Cooler" alt="" style="max-width:100%;border-radius:6px"></div>
+            <h3>MiniCool Pro</h3>
+            <div class="muted">Low-profile air cooler for compact builds</div>
+            <div class="price">$39.99</div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="card" role="listitem">
+            <div class="img"><img src="https://via.placeholder.com/380x140?text=Fan+Hub" alt="" style="max-width:100%;border-radius:6px"></div>
+            <h3>Smart Fan Hub</h3>
+            <div class="muted">Centralized fan & RGB control</div>
+            <div class="price">$19.99</div>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          <div style="font-weight:700">CoolingCo</div>
+          <div class="muted-small">Designed for performance — built to last</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px">
+          <div class="socials">
+            <span>Twitter</span>
+            <span>Discord</span>
+            <span>Instagram</span>
+          </div>
+          <div class="muted-small">© <span id="year"></span> CoolingCo</div>
+        </div>
+      </footer>
+    </main>
   </div>
-</article>
-      </article>
-      <article class="prod">
-        <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1200&auto=format&fit=crop" alt="RGB watercooled PC build" />
-        <div class="meta"><h4>Creator 240</h4><span class="pill">240mm AIO</span></div>
-      </article>
-      <article class="prod">
-        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop" alt="Compact ITX build" />
-        <div class="meta"><h4>Compact ITX</h4><span class="pill">Small form factor</span></div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Support -->
-  <section id="support" class="support">
-    <div class="container bar">
-      <span>Need help now?</span>
-      <a class="btn primary" href="#contact">Start Support Chat</a>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <form class="contact-form" action="https://formsubmit.co/carpenterit993@gmail.com" method="POST">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required />
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required />
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://carpenter-it.com/thanks.html">
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container cols">
-      <div>
-        <h5>Carpenter IT</h5>
-        <p>Reliable, Modern, and Professional. Small-business IT without the headache.</p>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <a href="#about">About</a>
-        <a href="#builds">Builds</a>
-        <a href="#services">Services</a>
-      </div>
-      <div>
-        <h5>Support</h5>
-        <a href="#contact">Contact</a>
-        <a href="#">Warranty</a>
-        <a href="#">FAQ</a>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
-    </div>
-    <p style="margin-top:24px;text-align:center">© <span id="year"></span> Carpenter IT. All rights reserved.</p>
-  </footer>
 
   <script>
-    const drawer = document.getElementById('drawer');
-    const menuBtn = document.getElementById('menuBtn');
-    function closeDrawer(){
-      drawer.classList.remove('open');
-      drawer.setAttribute('aria-hidden','true');
-      menuBtn.setAttribute('aria-expanded','false');
-    }
-    menuBtn.addEventListener('click',()=>{
-      drawer.classList.toggle('open');
-      drawer.setAttribute('aria-hidden', drawer.classList.contains('open') ? 'false':'true');
-      menuBtn.setAttribute('aria-expanded', drawer.classList.contains('open'));
-    });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
-      })
-    },{threshold:0.2});
-    document.querySelectorAll('.card,.prod').forEach(el=>observer.observe(el));
-
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener("click",function(e){
-        e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"});
-        closeDrawer();
+    // small script for mobile menu (simple)
+    (function(){
+      const btn = document.getElementById('hambtn');
+      let open=false;
+      btn.addEventListener('click',()=>{
+        open = !open;
+        if(open){
+          const nav = document.createElement('div');
+          nav.id='mobileNav';
+          nav.style.position='fixed';
+          nav.style.top='72px';
+          nav.style.right='14px';
+          nav.style.left='14px';
+          nav.style.background='linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))';
+          nav.style.padding='16px';
+          nav.style.borderRadius='12px';
+          nav.style.display='flex';
+          nav.style.flexDirection='column';
+          nav.style.gap='12px';
+          nav.innerHTML = '<a href=\"#\">Products</a><a href=\"#\">Deals</a><a href=\"#\">Support</a><a href=\"#\">Where to Buy</a><a class=\"cta\" href=\"#\">Buy Now</a>';
+          document.body.appendChild(nav);
+          btn.textContent='✕';
+        } else {
+          const nav = document.getElementById('mobileNav');
+          if(nav) nav.remove();
+          btn.textContent='☰';
+        }
       });
-    });
+
+      // year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
