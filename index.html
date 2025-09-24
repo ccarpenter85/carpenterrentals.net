@@ -1,272 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CoolingCo — Premium PC Cooling</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoolTech — Performance Cooling</title>
   <style>
-    :root{
-      --bg: #0f1724;
-      --card: #0b1220;
-      --muted: #9aa6bd;
-      --accent: #1fb6ff;
-      --glass: rgba(255,255,255,0.04);
-      --radius: 12px;
-      --maxw: 1200px;
-      --gap: 20px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    /* Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0a0c10;
+      color: #fff;
+      line-height: 1.5;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,#071021 0%, #071827 60%), var(--bg);
-      color:#e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
+    a { color: inherit; text-decoration: none; }
+
+    /* Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      background: #0f1117;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px;}
-    header{
-      display:flex;align-items:center;justify-content:space-between;padding:6px 0;
-    }
-    .logo{display:flex;align-items:center;gap:12px;font-weight:700}
-    .logo .badge{
-      width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#3b82f6);
-      display:flex;align-items:center;justify-content:center;font-weight:800;color:#041023;
-      box-shadow:0 6px 18px rgba(31,182,255,0.12), inset 0 -6px 12px rgba(255,255,255,0.06);
-    }
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
-    .cta{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0b6cff,#2dd4bf);color:#041023;font-weight:700;text-decoration:none}
-    /* Mobile nav */
-    .hamburger{display:none;padding:8px;border-radius:8px;background:var(--glass);cursor:pointer}
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #00d1ff; }
+    .menu { display: flex; gap: 20px; }
+    .menu a { font-weight: 500; color: #ccc; }
+    .menu a:hover { color: #00d1ff; }
+
     /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 420px;
-      gap:var(--gap);
-      align-items:center;
-      margin:28px 0 36px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:26px;border-radius:16px;
-      box-shadow:0 8px 30px rgba(3,7,18,0.6);
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 0;
     }
-    .hero h1{margin:0;font-size:34px;letter-spacing:-0.02em}
-    .hero p{color:var(--muted);margin-top:10px}
-    .hero .actions{margin-top:18px;display:flex;gap:12px}
-    .btn{padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700}
-    .btn.primary{background:var(--accent);color:#041023}
-    .btn.light{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-    .hero-visual{
-      display:flex;flex-direction:column;align-items:center;gap:12px;
+    .hero-text { flex: 1 1 500px; }
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00d1ff;
     }
-    .hero-visual .image{
-      width:100%;height:240px;border-radius:12px;background:
-      linear-gradient(135deg,#082033 0%, #07122a 100%);
-      display:flex;align-items:center;justify-content:center;color:var(--muted);
-      border:1px solid rgba(255,255,255,0.03);
+    .hero-text p { margin-bottom: 20px; color: #bbb; }
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 6px;
+      background: #00d1ff;
+      color: #000;
+      font-weight: bold;
     }
-    /* Product grid */
-    .section-title{display:flex;align-items:center;justify-content:space-between}
-    .grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px;
+    .hero-img {
+      flex: 1 1 400px;
+      text-align: center;
     }
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
-      transition:transform .18s ease, box-shadow .18s ease;
+    .hero-img img {
+      max-width: 100%;
+      border-radius: 10px;
     }
-    .card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
-    .card .img{height:140px;border-radius:10px;background:#071428;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
-    .card h3{margin:0;font-size:16px}
-    .price{margin-top:8px;font-weight:700}
-    .muted{color:var(--muted);font-size:13px}
-    /* footer */
-    footer{margin-top:36px;padding:18px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
-    .socials{display:flex;gap:12px;color:var(--muted)}
-    /* responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr; padding:18px}
-      .grid{grid-template-columns:repeat(2,1fr)}
+
+    /* Products */
+    .section { padding: 60px 0; }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
     }
-    @media (max-width:640px){
-      .wrap{padding:14px}
-      nav{display:none}
-      .hamburger{display:block}
-      .grid{grid-template-columns:1fr}
-      header{gap:10px}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
-    /* simple utilities */
-    .center{text-align:center}
-    .muted-small{color:var(--muted);font-size:13px}
+    .card {
+      background: #151821;
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    .card h3 { margin-bottom: 10px; color: #00d1ff; }
+    .card p { color: #aaa; font-size: 0.9rem; }
+
+    /* Footer */
+    footer {
+      background: #0f1117;
+      padding: 30px 20px;
+      text-align: center;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text { margin-bottom: 30px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div style="display:flex;align-items:center;gap:14px">
-        <div class="logo" aria-label="CoolingCo">
-          <div class="badge">C</div>
-          <div>
-            <div style="font-size:16px">CoolingCo</div>
-            <div class="muted-small">Performance Cooling</div>
-          </div>
-        </div>
-      </div>
-
-      <nav aria-label="Main navigation">
-        <a href="#" aria-current="page">Products</a>
-        <a href="#">Deals</a>
+  <header>
+    <div class="container nav">
+      <div class="logo">CoolTech</div>
+      <nav class="menu">
+        <a href="#">Products</a>
+        <a href="#">Solutions</a>
         <a href="#">Support</a>
-        <a href="#">Where to Buy</a>
-        <a class="cta" href="#">Buy Now</a>
+        <a href="#">About</a>
       </nav>
+    </div>
+  </header>
 
-      <div style="display:flex;gap:10px;align-items:center">
-        <button class="hamburger" id="hambtn" aria-label="Open menu">☰</button>
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-text">
+        <h1>Innovative Cooling for High-Performance PCs</h1>
+        <p>Stay cool under pressure with our cutting-edge cooling solutions designed for gamers and creators.</p>
+        <a href="#" class="btn">Explore Products</a>
       </div>
-    </header>
+      <div class="hero-img">
+        <img src="https://via.placeholder.com/500x300.png?text=Cooling+Product" alt="Cooling product">
+      </div>
+    </section>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <h1 id="hero-title">High-performance cooling for gamers & creators</h1>
-          <p>Quiet fans, efficient radiators, and RGB-ready designs. Engineered to keep your system cool under load.</p>
-          <div class="actions">
-            <a class="btn primary" href="#">Shop cooling</a>
-            <a class="btn light" href="#">Compare models</a>
-          </div>
-
-          <div style="margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:520px">
-            <div class="card" style="padding:10px">
-              <div class="muted-small">Best seller</div>
-              <div style="font-weight:800">StormFan 240</div>
-              <div class="muted-small">AIO liquid cooler — 240mm radiator</div>
-            </div>
-            <div class="card" style="padding:10px">
-              <div class="muted-small">Compact</div>
-              <div style="font-weight:800">MiniCool Pro</div>
-              <div class="muted-small">Low-profile cooler — ideal for SFF builds</div>
-            </div>
-          </div>
+    <!-- Products -->
+    <section class="section container">
+      <h2>Featured Products</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://via.placeholder.com/400x250.png?text=Liquid+Cooler" alt="Liquid Cooler">
+          <h3>Liquid Cooler 360</h3>
+          <p>Extreme cooling power with triple-fan radiator design.</p>
         </div>
-
-        <aside class="hero-visual" aria-hidden="false">
-          <div class="image">
-            <!-- Replace with your product art -->
-            <img src="https://via.placeholder.com/360x200?text=Product+Art" alt="product art" style="max-width:100%;border-radius:8px">
-          </div>
-          <div class="muted-small center">Quiet. Efficient. Built to last.</div>
-        </aside>
-      </section>
-
-      <section aria-labelledby="products" style="margin-top:6px">
-        <div class="section-title">
-          <h2 id="products" style="margin:0">Featured Products</h2>
-          <div class="muted-small">Showing popular picks</div>
+        <div class="card">
+          <img src="https://via.placeholder.com/400x250.png?text=Air+Cooler" alt="Air Cooler">
+          <h3>Air Cooler Pro</h3>
+          <p>Silent and efficient tower air cooler for all systems.</p>
         </div>
-
-        <div class="grid" role="list">
-          <!-- Card 1 -->
-          <article class="card" role="listitem">
-            <div class="img"><img src="https://via.placeholder.com/380x140?text=240mm+AIO" alt="" style="max-width:100%;border-radius:6px"></div>
-            <h3>StormFan 240 AIO</h3>
-            <div class="muted">All-in-one liquid cooler with dual 120mm fans</div>
-            <div class="price">$109.99</div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="card" role="listitem">
-            <div class="img"><img src="https://via.placeholder.com/380x140?text=120mm+Fan+Pack" alt="" style="max-width:100%;border-radius:6px"></div>
-            <h3>HyperFlow Fan Pack (3x120)</h3>
-            <div class="muted">High static pressure, low noise</div>
-            <div class="price">$49.99</div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="card" role="listitem">
-            <div class="img"><img src="https://via.placeholder.com/380x140?text=RGB+Controller" alt="" style="max-width:100%;border-radius:6px"></div>
-            <h3>ARGB Controller Pro</h3>
-            <div class="muted">Sync your RGB across the system</div>
-            <div class="price">$29.99</div>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="card" role="listitem">
-            <div class="img"><img src="https://via.placeholder.com/380x140?text=360mm+AIO" alt="" style="max-width:100%;border-radius:6px"></div>
-            <h3>StormFan 360 Elite</h3>
-            <div class="muted">3x120mm radiator — for extreme cooling</div>
-            <div class="price">$159.99</div>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="card" role="listitem">
-            <div class="img"><img src="https://via.placeholder.com/380x140?text=Low+Profile+Cooler" alt="" style="max-width:100%;border-radius:6px"></div>
-            <h3>MiniCool Pro</h3>
-            <div class="muted">Low-profile air cooler for compact builds</div>
-            <div class="price">$39.99</div>
-          </article>
-
-          <!-- Card 6 -->
-          <article class="card" role="listitem">
-            <div class="img"><img src="https://via.placeholder.com/380x140?text=Fan+Hub" alt="" style="max-width:100%;border-radius:6px"></div>
-            <h3>Smart Fan Hub</h3>
-            <div class="muted">Centralized fan & RGB control</div>
-            <div class="price">$19.99</div>
-          </article>
+        <div class="card">
+          <img src="https://via.placeholder.com/400x250.png?text=RGB+Fan" alt="RGB Fan">
+          <h3>RGB Fan Pack</h3>
+          <p>Customizable lighting and high airflow performance.</p>
         </div>
-      </section>
+      </div>
+    </section>
+  </main>
 
-      <footer>
-        <div>
-          <div style="font-weight:700">CoolingCo</div>
-          <div class="muted-small">Designed for performance — built to last</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:18px">
-          <div class="socials">
-            <span>Twitter</span>
-            <span>Discord</span>
-            <span>Instagram</span>
-          </div>
-          <div class="muted-small">© <span id="year"></span> CoolingCo</div>
-        </div>
-      </footer>
-    </main>
-  </div>
+  <footer>
+    <p>© <span id="year"></span> CoolTech. All rights reserved.</p>
+  </footer>
 
   <script>
-    // small script for mobile menu (simple)
-    (function(){
-      const btn = document.getElementById('hambtn');
-      let open=false;
-      btn.addEventListener('click',()=>{
-        open = !open;
-        if(open){
-          const nav = document.createElement('div');
-          nav.id='mobileNav';
-          nav.style.position='fixed';
-          nav.style.top='72px';
-          nav.style.right='14px';
-          nav.style.left='14px';
-          nav.style.background='linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))';
-          nav.style.padding='16px';
-          nav.style.borderRadius='12px';
-          nav.style.display='flex';
-          nav.style.flexDirection='column';
-          nav.style.gap='12px';
-          nav.innerHTML = '<a href=\"#\">Products</a><a href=\"#\">Deals</a><a href=\"#\">Support</a><a href=\"#\">Where to Buy</a><a class=\"cta\" href=\"#\">Buy Now</a>';
-          document.body.appendChild(nav);
-          btn.textContent='✕';
-        } else {
-          const nav = document.getElementById('mobileNav');
-          if(nav) nav.remove();
-          btn.textContent='☰';
-        }
-      });
-
-      // year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
